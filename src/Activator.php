@@ -7,6 +7,8 @@
 
 namespace PratapMaity\WPArchitectAI;
 
+defined( 'ABSPATH' ) || exit;
+
 /**
  * Handles plugin activation.
  */
@@ -25,11 +27,11 @@ final class Activator {
 				esc_html(
 					sprintf(
 						/* translators: %s: Minimum required PHP version. */
-						__( 'WP Architect AI requires PHP %s or later.', 'wp-architect-ai' ),
+						__( 'Architect AI Code Generator requires PHP %s or later.', 'architect-ai-code-generator' ),
 						WP_ARCHITECT_AI_MINIMUM_PHP_VERSION
 					)
 				),
-				esc_html__( 'Plugin activation failed', 'wp-architect-ai' ),
+				esc_html__( 'Plugin activation failed', 'architect-ai-code-generator' ),
 				array( 'back_link' => true )
 			);
 		}
@@ -39,11 +41,11 @@ final class Activator {
 				esc_html(
 					sprintf(
 						/* translators: %s: Minimum required WordPress version. */
-						__( 'WP Architect AI requires WordPress %s or later.', 'wp-architect-ai' ),
+						__( 'Architect AI Code Generator requires WordPress %s or later.', 'architect-ai-code-generator' ),
 						WP_ARCHITECT_AI_MINIMUM_WORDPRESS_VERSION
 					)
 				),
-				esc_html__( 'Plugin activation failed', 'wp-architect-ai' ),
+				esc_html__( 'Plugin activation failed', 'architect-ai-code-generator' ),
 				array( 'back_link' => true )
 			);
 		}

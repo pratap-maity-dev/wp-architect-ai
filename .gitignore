@@ -1,6 +1,9 @@
-/vendor/
+/vendor/*
+!/vendor/autoload.php
+!/vendor/composer/
 /.phpunit.cache/
 /.phpunit.result.cache
 /.idea/
 /.vscode/
 .DS_Store
+/dist/

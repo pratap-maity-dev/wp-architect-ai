@@ -5,6 +5,10 @@
  * @package PratapMaity\WPArchitectAI
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	define( 'ABSPATH', dirname( __DIR__ ) . '/' );
+}
+
 if ( ! function_exists( '__' ) ) {
 	/**
 	 * Returns an untranslated test string.

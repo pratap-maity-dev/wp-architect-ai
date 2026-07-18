@@ -7,6 +7,8 @@
 
 namespace PratapMaity\WPArchitectAI\PostType;
 
+defined( 'ABSPATH' ) || exit;
+
 /**
  * Immutable sanitized custom post type configuration.
  */

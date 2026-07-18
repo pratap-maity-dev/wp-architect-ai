@@ -7,6 +7,8 @@
 
 namespace PratapMaity\WPArchitectAI\Taxonomy;
 
+defined( 'ABSPATH' ) || exit;
+
 /**
  * Generates a standalone taxonomy registration file.
  */
@@ -41,7 +43,7 @@ final class CodeGenerator {
 		);
 
 		foreach ( $labels as $key => $label ) {
-			$lines[] = "\t\t" . $this->export( $key ) . ' => __( ' . $this->export( $label ) . ", 'wp-architect-ai' ),";
+			$lines[] = "\t\t" . $this->export( $key ) . ' => __( ' . $this->export( $label ) . ", 'architect-ai-code-generator' ),";
 		}
 
 		$lines = array_merge(

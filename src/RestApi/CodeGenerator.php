@@ -7,6 +7,8 @@
 
 namespace PratapMaity\WPArchitectAI\RestApi;
 
+defined( 'ABSPATH' ) || exit;
+
 /**
  * Generates a standalone object-oriented REST endpoint file.
  */
@@ -331,7 +333,7 @@ final class CodeGenerator {
 		);
 		if ( 'GET' !== $configuration->method ) {
 			$lines[] = '\t\t// TODO: Add business-specific validation and mutation logic. No data is modified by this boilerplate.';
-			$lines[] = "\t\treturn new \\WP_Error( 'not_implemented', __( 'Implement and test this authenticated write endpoint before use.', 'wp-architect-ai' ), array( 'status' => 501 ) );";
+			$lines[] = "\t\treturn new \\WP_Error( 'not_implemented', __( 'Implement and test this authenticated write endpoint before use.', 'architect-ai-code-generator' ), array( 'status' => 501 ) );";
 			$lines[] = '\t}';
 			$lines[] = '';
 
@@ -340,10 +342,10 @@ final class CodeGenerator {
 
 		if ( 'current_user' === $configuration->data_source ) {
 			$lines[] = '\t\t$user = wp_get_current_user();';
-			$lines[] = "\t\tif ( 0 === \$user->ID ) { return new \\WP_Error( 'not_authenticated', __( 'Authentication is required.', 'wp-architect-ai' ), array( 'status' => 401 ) ); }";
+			$lines[] = "\t\tif ( 0 === \$user->ID ) { return new \\WP_Error( 'not_authenticated', __( 'Authentication is required.', 'architect-ai-code-generator' ), array( 'status' => 401 ) ); }";
 			$lines[] = "\t\treturn new \\WP_REST_Response( array( 'ID' => \$user->ID, 'display_name' => \$user->display_name, 'archive_url' => get_author_posts_url( \$user->ID ) ), 200 );";
 		} elseif ( 'custom_callback' === $configuration->data_source ) {
-			$lines[] = "\t\treturn new \\WP_Error( 'not_implemented', __( 'Replace this placeholder with a reviewed custom callback.', 'wp-architect-ai' ), array( 'status' => 501 ) );";
+			$lines[] = "\t\treturn new \\WP_Error( 'not_implemented', __( 'Replace this placeholder with a reviewed custom callback.', 'architect-ai-code-generator' ), array( 'status' => 501 ) );";
 		} elseif ( 'taxonomy_terms' === $configuration->data_source ) {
 			$lines = array_merge( $lines, $this->taxonomy_term_request_lines() );
 		} elseif ( 'single_post' === $configuration->data_source ) {
@@ -365,7 +367,7 @@ final class CodeGenerator {
 	private function taxonomy_term_request_lines(): array {
 		return array(
 			"\t\t\$taxonomy = sanitize_key( (string) \$request->get_param( 'taxonomy' ) );",
-			"\t\tif ( ! taxonomy_exists( \$taxonomy ) ) { return new \\WP_Error( 'invalid_taxonomy', __( 'The taxonomy does not exist.', 'wp-architect-ai' ), array( 'status' => 400 ) ); }",
+			"\t\tif ( ! taxonomy_exists( \$taxonomy ) ) { return new \\WP_Error( 'invalid_taxonomy', __( 'The taxonomy does not exist.', 'architect-ai-code-generator' ), array( 'status' => 400 ) ); }",
 			"\t\t\$terms = get_terms( array( 'taxonomy' => \$taxonomy, 'hide_empty' => false ) );",
 			"\t\tif ( is_wp_error( \$terms ) ) { return \$terms; }",
 			"\t\t\$items = array_map( static fn( \\WP_Term \$term ): array => array( 'ID' => \$term->term_id, 'name' => \$term->name, 'slug' => \$term->slug, 'taxonomy' => \$term->taxonomy ), \$terms );",
@@ -380,9 +382,9 @@ final class CodeGenerator {
 	 */
 	private function single_post_request_lines(): array {
 		return array(
-			"\t\tif ( ! post_type_exists( self::POST_TYPE ) ) { return new \\WP_Error( 'invalid_post_type', __( 'The configured post type does not exist.', 'wp-architect-ai' ), array( 'status' => 500 ) ); }",
+			"\t\tif ( ! post_type_exists( self::POST_TYPE ) ) { return new \\WP_Error( 'invalid_post_type', __( 'The configured post type does not exist.', 'architect-ai-code-generator' ), array( 'status' => 500 ) ); }",
 			"\t\t\$post = get_post( absint( \$request->get_param( 'id' ) ) );",
-			"\t\tif ( ! \$post instanceof \\WP_Post || self::POST_TYPE !== \$post->post_type || 'publish' !== \$post->post_status || '' !== \$post->post_password ) { return new \\WP_Error( 'not_found', __( 'The requested item was not found.', 'wp-architect-ai' ), array( 'status' => 404 ) ); }",
+			"\t\tif ( ! \$post instanceof \\WP_Post || self::POST_TYPE !== \$post->post_type || 'publish' !== \$post->post_status || '' !== \$post->post_password ) { return new \\WP_Error( 'not_found', __( 'The requested item was not found.', 'architect-ai-code-generator' ), array( 'status' => 404 ) ); }",
 			"\t\t\$item = \$this->prepare_item( \$post );",
 			"\t\tif ( is_wp_error( \$item ) ) { return \$item; }",
 			"\t\treturn new \\WP_REST_Response( \$item, 200 );",
@@ -397,7 +399,7 @@ final class CodeGenerator {
 	 */
 	private function post_query_request_lines( Configuration $configuration ): array {
 		$lines = array(
-			"\t\tif ( ! post_type_exists( self::POST_TYPE ) ) { return new \\WP_Error( 'invalid_post_type', __( 'The configured post type does not exist.', 'wp-architect-ai' ), array( 'status' => 500 ) ); }",
+			"\t\tif ( ! post_type_exists( self::POST_TYPE ) ) { return new \\WP_Error( 'invalid_post_type', __( 'The configured post type does not exist.', 'architect-ai-code-generator' ), array( 'status' => 500 ) ); }",
 			"\t\t\$page = " . ( $configuration->pagination_enabled ? "max( 1, absint( \$request->get_param( 'page' ) ) )" : '1' ) . ';',
 			"\t\t\$per_page = " . ( $configuration->pagination_enabled ? "min( self::MAX_RESULTS, max( 1, absint( \$request->get_param( 'per_page' ) ) ) )" : 'self::MAX_RESULTS' ) . ';',
 			"\t\t\$query_args = array( 'post_type' => self::POST_TYPE, 'post_status' => 'publish', 'has_password' => false, 'posts_per_page' => \$per_page, 'paged' => \$page, 'order' => strtoupper( (string) \$request->get_param( 'order' ) ), 'orderby' => (string) \$request->get_param( 'orderby' ) );",
@@ -408,12 +410,12 @@ final class CodeGenerator {
 		if ( $configuration->taxonomy_filter_enabled ) {
 			$lines[] = "\t\t\$taxonomy = sanitize_key( (string) \$request->get_param( 'taxonomy' ) );";
 			$lines[] = "\t\t\$term = sanitize_title( (string) \$request->get_param( 'term' ) );";
-			$lines[] = "\t\tif ( '' !== \$taxonomy || '' !== \$term ) { if ( '' === \$taxonomy || '' === \$term || ! taxonomy_exists( \$taxonomy ) ) { return new \\WP_Error( 'invalid_taxonomy_filter', __( 'A valid taxonomy and term are required.', 'wp-architect-ai' ), array( 'status' => 400 ) ); } \$query_args['tax_query'] = array( array( 'taxonomy' => \$taxonomy, 'field' => 'slug', 'terms' => array( \$term ), 'operator' => 'IN' ) ); }";
+			$lines[] = "\t\tif ( '' !== \$taxonomy || '' !== \$term ) { if ( '' === \$taxonomy || '' === \$term || ! taxonomy_exists( \$taxonomy ) ) { return new \\WP_Error( 'invalid_taxonomy_filter', __( 'A valid taxonomy and term are required.', 'architect-ai-code-generator' ), array( 'status' => 400 ) ); } \$query_args['tax_query'] = array( array( 'taxonomy' => \$taxonomy, 'field' => 'slug', 'terms' => array( \$term ), 'operator' => 'IN' ) ); }";
 		}
 		if ( $configuration->meta_filter_enabled ) {
 			$lines[] = '\t\t// Security: unrestricted meta queries may reveal sensitive data; only configured public keys are accepted.';
 			$lines[] = "\t\t\$meta_key = sanitize_key( (string) \$request->get_param( 'meta_key' ) );";
-			$lines[] = "\t\tif ( '' !== \$meta_key ) { if ( str_starts_with( \$meta_key, '_' ) || ! in_array( \$meta_key, self::META_KEYS, true ) ) { return new \\WP_Error( 'invalid_meta_key', __( 'The meta key is not allowed.', 'wp-architect-ai' ), array( 'status' => 400 ) ); } \$query_args['meta_query'] = array( array( 'key' => \$meta_key, 'value' => sanitize_text_field( (string) \$request->get_param( 'meta_value' ) ), 'compare' => '=' ) ); }";
+			$lines[] = "\t\tif ( '' !== \$meta_key ) { if ( str_starts_with( \$meta_key, '_' ) || ! in_array( \$meta_key, self::META_KEYS, true ) ) { return new \\WP_Error( 'invalid_meta_key', __( 'The meta key is not allowed.', 'architect-ai-code-generator' ), array( 'status' => 400 ) ); } \$query_args['meta_query'] = array( array( 'key' => \$meta_key, 'value' => sanitize_text_field( (string) \$request->get_param( 'meta_value' ) ), 'compare' => '=' ) ); }";
 		}
 		if ( 'public' === $configuration->authentication && 0 < (int) $configuration->cache_duration ) {
 			$lines[] = '\t\t// Invalidate this transient when relevant posts or terms change.';

@@ -1,27 +1,36 @@
-=== WP Architect AI ===
+=== Architect AI Code Generator ===
 Contributors: pratapmaity
-Tags: developer tools, code generator, development
+Tags: code generator, custom post types, taxonomy, rest api, developer tools
 Requires at least: 6.5
-Tested up to: 6.8
+Tested up to: 7.0
 Requires PHP: 8.1
-Stable tag: 0.4.0
+Stable tag: 0.5.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-A foundation for generating secure, standards-compliant WordPress code from structured configuration.
+Generate reviewable WordPress code for post types, taxonomies, and REST API endpoints without executing it.
 
 == Description ==
 
-WP Architect AI is a WordPress developer productivity plugin. It includes secure Custom Post Type, Taxonomy, and REST API Endpoint Generators that produce reviewable and downloadable PHP files.
+Architect AI Code Generator is a WordPress developer productivity plugin. It includes Custom Post Type, Taxonomy, and REST API Endpoint Generators that produce reviewable and downloadable PHP files.
 
-External AI service integrations are not included. Generated code is displayed or downloaded only; the plugin does not execute it or modify theme or plugin files.
+Configure an admin form, validate the settings, preview the generated PHP, copy it to the clipboard, or download it for review. Generated code is never executed or installed by the plugin and no theme or plugin files are modified.
+
+= Included generators =
+
+* Custom Post Type registration.
+* Custom Taxonomy registration with associated post types.
+* WordPress REST API endpoints with permissions, validated arguments, and safe response fields.
+
+= Privacy =
+
+Architect AI Code Generator does not collect personal data, contact external services, or use tracking. Form values and generated code are not stored by the plugin.
 
 == Installation ==
 
-1. Upload the `wp-architect-ai` directory to `/wp-content/plugins/`.
-2. Run `composer install --no-dev --optimize-autoloader` inside the plugin directory before packaging or deployment.
-3. Activate WP Architect AI through the Plugins screen in WordPress.
-4. Open WP Architect AI in the WordPress administration menu.
+1. Upload the Architect AI Code Generator ZIP through Plugins > Add New > Upload Plugin, or copy the `architect-ai-code-generator` directory into `/wp-content/plugins/`.
+2. Activate Architect AI Code Generator through the Plugins screen in WordPress.
+3. Open Architect AI Code Generator in the WordPress administration menu.
 
 == Frequently Asked Questions ==
 
@@ -29,15 +38,22 @@ External AI service integrations are not included. Generated code is displayed o
 
 No. AI API integration is not part of this foundation release.
 
+= Where should I place generated code? =
+
+Review and test the generated PHP in a staging environment, then add it to a custom plugin or another appropriate development project. Architect AI Code Generator does not install it for you.
+
 = Does this release execute or install generated PHP code? =
 
 No. It generates a text preview and downloadable file, but never executes the code or writes it into a theme or plugin.
 
-== Screenshots ==
-
-1. The WP Architect AI administration dashboard.
-
 == Changelog ==
+
+= 0.5.0 =
+
+* Renamed the plugin to Architect AI Code Generator for WordPress.org directory compatibility.
+* Added a complete production Composer autoloader to the distributable plugin.
+* Updated directory metadata, privacy information, installation guidance, and release packaging.
+* Added direct-file access protection throughout runtime PHP files.
 
 = 0.4.0 =
 
@@ -67,5 +83,5 @@ No. It generates a text preview and downloadable file, but never executes the co
 
 * Added the initial plugin bootstrap and Composer autoloading.
 * Added activation and deactivation handlers.
-* Added the WP Architect AI administration dashboard.
+* Added the original WP Architect AI administration dashboard.
 * Added the Custom Post Type Generator with preview and secure download.

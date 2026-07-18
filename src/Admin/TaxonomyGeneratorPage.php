@@ -7,6 +7,8 @@
 
 namespace PratapMaity\WPArchitectAI\Admin;
 
+defined( 'ABSPATH' ) || exit;
+
 use PratapMaity\WPArchitectAI\Taxonomy\CodeGenerator;
 use PratapMaity\WPArchitectAI\Taxonomy\Configuration;
 use PratapMaity\WPArchitectAI\Taxonomy\ConfigurationSanitizer;
@@ -18,7 +20,7 @@ use PratapMaity\WPArchitectAI\Taxonomy\ConfigurationValidator;
 final class TaxonomyGeneratorPage {
 
 	private const CAPABILITY      = 'manage_options';
-	private const MENU_SLUG       = 'wp-architect-ai-taxonomy-generator';
+	private const MENU_SLUG       = 'architect-ai-code-generator-taxonomy-generator';
 	private const GENERATE_ACTION = 'wp_architect_ai_generate_taxonomy';
 	private const DOWNLOAD_ACTION = 'wp_architect_ai_download_taxonomy';
 
@@ -56,9 +58,9 @@ final class TaxonomyGeneratorPage {
 	 */
 	public function register_menu(): void {
 		add_submenu_page(
-			'wp-architect-ai',
-			esc_html__( 'Taxonomy Generator', 'wp-architect-ai' ),
-			esc_html__( 'Taxonomy Generator', 'wp-architect-ai' ),
+			'architect-ai-code-generator',
+			esc_html__( 'Taxonomy Generator', 'architect-ai-code-generator' ),
+			esc_html__( 'Taxonomy Generator', 'architect-ai-code-generator' ),
 			self::CAPABILITY,
 			self::MENU_SLUG,
 			array( $this, 'render' )
@@ -72,23 +74,23 @@ final class TaxonomyGeneratorPage {
 	 * @return void
 	 */
 	public function enqueue_assets( string $hook_suffix ): void {
-		if ( 'wp-architect-ai_page_' . self::MENU_SLUG !== $hook_suffix ) {
+		if ( 'architect-ai-code-generator_page_' . self::MENU_SLUG !== $hook_suffix ) {
 			return;
 		}
 
 		wp_enqueue_script(
-			'wp-architect-ai-generator',
+			'architect-ai-code-generator-generator',
 			plugins_url( 'assets/js/generator.js', WP_ARCHITECT_AI_FILE ),
 			array(),
 			WP_ARCHITECT_AI_VERSION,
 			true
 		);
 		wp_localize_script(
-			'wp-architect-ai-generator',
-			'wpArchitectAiGenerator',
+			'architect-ai-code-generator-generator',
+			'architectAiCodeGenerator',
 			array(
-				'copied' => __( 'Code copied to the clipboard.', 'wp-architect-ai' ),
-				'failed' => __( 'Unable to copy automatically. Select the code and copy it manually.', 'wp-architect-ai' ),
+				'copied' => __( 'Code copied to the clipboard.', 'architect-ai-code-generator' ),
+				'failed' => __( 'Unable to copy automatically. Select the code and copy it manually.', 'architect-ai-code-generator' ),
 			)
 		);
 	}
@@ -118,7 +120,7 @@ final class TaxonomyGeneratorPage {
 
 				if ( array() === $errors ) {
 					$generated_code  = $this->generator->generate( $configuration );
-					$success_message = __( 'Taxonomy code generated successfully.', 'wp-architect-ai' );
+					$success_message = __( 'Taxonomy code generated successfully.', 'architect-ai-code-generator' );
 				}
 			}
 		}
@@ -141,8 +143,8 @@ final class TaxonomyGeneratorPage {
 
 		if ( array() !== $errors ) {
 			wp_die(
-				esc_html__( 'The download configuration is invalid.', 'wp-architect-ai' ),
-				esc_html__( 'Download failed', 'wp-architect-ai' ),
+				esc_html__( 'The download configuration is invalid.', 'architect-ai-code-generator' ),
+				esc_html__( 'Download failed', 'architect-ai-code-generator' ),
 				array( 'response' => 400 )
 			);
 		}
@@ -171,8 +173,8 @@ final class TaxonomyGeneratorPage {
 	private function assert_capability(): void {
 		if ( ! current_user_can( self::CAPABILITY ) ) {
 			wp_die(
-				esc_html__( 'You do not have permission to access this page.', 'wp-architect-ai' ),
-				esc_html__( 'Access denied', 'wp-architect-ai' ),
+				esc_html__( 'You do not have permission to access this page.', 'architect-ai-code-generator' ),
+				esc_html__( 'Access denied', 'architect-ai-code-generator' ),
 				array( 'response' => 403 )
 			);
 		}

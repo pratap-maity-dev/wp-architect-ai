@@ -7,6 +7,8 @@
 
 namespace PratapMaity\WPArchitectAI\RestApi;
 
+defined( 'ABSPATH' ) || exit;
+
 /**
  * Sanitizes REST endpoint configuration input.
  */

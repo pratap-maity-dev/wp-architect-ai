@@ -7,6 +7,8 @@
 
 namespace PratapMaity\WPArchitectAI\Admin;
 
+defined( 'ABSPATH' ) || exit;
+
 use PratapMaity\WPArchitectAI\RestApi\CodeGenerator;
 use PratapMaity\WPArchitectAI\RestApi\Configuration;
 use PratapMaity\WPArchitectAI\RestApi\ConfigurationSanitizer;
@@ -18,7 +20,7 @@ use PratapMaity\WPArchitectAI\RestApi\ConfigurationValidator;
 final class RestApiGeneratorPage {
 
 	private const CAPABILITY      = 'manage_options';
-	private const MENU_SLUG       = 'wp-architect-ai-rest-api-generator';
+	private const MENU_SLUG       = 'architect-ai-code-generator-rest-api-generator';
 	private const GENERATE_ACTION = 'wp_architect_ai_generate_rest_api';
 	private const DOWNLOAD_ACTION = 'wp_architect_ai_download_rest_api';
 
@@ -48,9 +50,9 @@ final class RestApiGeneratorPage {
 	/** Registers the generator submenu. @return void */
 	public function register_menu(): void {
 		add_submenu_page(
-			'wp-architect-ai',
-			esc_html__( 'REST API Generator', 'wp-architect-ai' ),
-			esc_html__( 'REST API Generator', 'wp-architect-ai' ),
+			'architect-ai-code-generator',
+			esc_html__( 'REST API Generator', 'architect-ai-code-generator' ),
+			esc_html__( 'REST API Generator', 'architect-ai-code-generator' ),
 			self::CAPABILITY,
 			self::MENU_SLUG,
 			array( $this, 'render' )
@@ -64,17 +66,17 @@ final class RestApiGeneratorPage {
 	 * @return void
 	 */
 	public function enqueue_assets( string $hook_suffix ): void {
-		if ( 'wp-architect-ai_page_' . self::MENU_SLUG !== $hook_suffix ) {
+		if ( 'architect-ai-code-generator_page_' . self::MENU_SLUG !== $hook_suffix ) {
 			return;
 		}
 
-		wp_enqueue_script( 'wp-architect-ai-generator', plugins_url( 'assets/js/generator.js', WP_ARCHITECT_AI_FILE ), array(), WP_ARCHITECT_AI_VERSION, true );
+		wp_enqueue_script( 'architect-ai-code-generator-generator', plugins_url( 'assets/js/generator.js', WP_ARCHITECT_AI_FILE ), array(), WP_ARCHITECT_AI_VERSION, true );
 		wp_localize_script(
-			'wp-architect-ai-generator',
-			'wpArchitectAiGenerator',
+			'architect-ai-code-generator-generator',
+			'architectAiCodeGenerator',
 			array(
-				'copied' => __( 'Code copied to the clipboard.', 'wp-architect-ai' ),
-				'failed' => __( 'Unable to copy automatically. Select the code and copy it manually.', 'wp-architect-ai' ),
+				'copied' => __( 'Code copied to the clipboard.', 'architect-ai-code-generator' ),
+				'failed' => __( 'Unable to copy automatically. Select the code and copy it manually.', 'architect-ai-code-generator' ),
 			)
 		);
 	}
@@ -100,7 +102,7 @@ final class RestApiGeneratorPage {
 
 				if ( array() === $errors ) {
 					$generated_code  = $this->generator->generate( $configuration );
-					$success_message = __( 'REST API endpoint code generated successfully.', 'wp-architect-ai' );
+					$success_message = __( 'REST API endpoint code generated successfully.', 'architect-ai-code-generator' );
 				}
 			}
 		}
@@ -118,7 +120,7 @@ final class RestApiGeneratorPage {
 		$errors        = $this->validator->validate( $configuration );
 
 		if ( array() !== $errors ) {
-			wp_die( esc_html__( 'The download configuration is invalid.', 'wp-architect-ai' ), esc_html__( 'Download failed', 'wp-architect-ai' ), array( 'response' => 400 ) );
+			wp_die( esc_html__( 'The download configuration is invalid.', 'architect-ai-code-generator' ), esc_html__( 'Download failed', 'architect-ai-code-generator' ), array( 'response' => 400 ) );
 		}
 
 		$this->download->send( $this->generator->filename( $configuration ), $this->generator->generate( $configuration ) );
@@ -134,14 +136,14 @@ final class RestApiGeneratorPage {
 	/** Enforces administrative access. @return void */
 	private function assert_capability(): void {
 		if ( ! current_user_can( self::CAPABILITY ) ) {
-			wp_die( esc_html__( 'You do not have permission to access this page.', 'wp-architect-ai' ), esc_html__( 'Access denied', 'wp-architect-ai' ), array( 'response' => 403 ) );
+			wp_die( esc_html__( 'You do not have permission to access this page.', 'architect-ai-code-generator' ), esc_html__( 'Access denied', 'architect-ai-code-generator' ), array( 'response' => 403 ) );
 		}
 	}
 
 	/** Returns the initial form state. @return Configuration */
 	private function empty_configuration(): Configuration {
 		return new Configuration(
-			'wp-architect-ai/v1',
+			'architect-ai-code-generator/v1',
 			false,
 			'/projects',
 			false,

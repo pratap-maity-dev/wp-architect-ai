@@ -7,6 +7,8 @@
 
 namespace PratapMaity\WPArchitectAI;
 
+defined( 'ABSPATH' ) || exit;
+
 use PratapMaity\WPArchitectAI\Admin\DashboardPage;
 use PratapMaity\WPArchitectAI\Admin\GeneratedFileDownload;
 use PratapMaity\WPArchitectAI\Admin\PostTypeGeneratorPage;

@@ -7,6 +7,8 @@
 
 namespace PratapMaity\WPArchitectAI\PostType;
 
+defined( 'ABSPATH' ) || exit;
+
 /**
  * Validates sanitized custom post type configuration.
  */
@@ -46,25 +48,25 @@ final class ConfigurationValidator {
 		$errors = array();
 
 		if ( '' === $configuration->post_type_key ) {
-			$errors[] = __( 'The post type key is required.', 'wp-architect-ai' );
+			$errors[] = __( 'The post type key is required.', 'architect-ai-code-generator' );
 		} elseif ( 1 !== preg_match( '/^[a-z0-9_-]+$/', $configuration->post_type_key ) ) {
-			$errors[] = __( 'The post type key may contain only lowercase letters, numbers, underscores, or hyphens.', 'wp-architect-ai' );
+			$errors[] = __( 'The post type key may contain only lowercase letters, numbers, underscores, or hyphens.', 'architect-ai-code-generator' );
 		} elseif ( 20 < strlen( $configuration->post_type_key ) ) {
-			$errors[] = __( 'The post type key must not exceed 20 characters.', 'wp-architect-ai' );
+			$errors[] = __( 'The post type key must not exceed 20 characters.', 'architect-ai-code-generator' );
 		} elseif ( in_array( $configuration->post_type_key, self::RESERVED_KEYS, true ) ) {
-			$errors[] = __( 'The post type key is reserved by WordPress.', 'wp-architect-ai' );
+			$errors[] = __( 'The post type key is reserved by WordPress.', 'architect-ai-code-generator' );
 		}
 
 		if ( '' === $configuration->singular_label ) {
-			$errors[] = __( 'The singular label is required.', 'wp-architect-ai' );
+			$errors[] = __( 'The singular label is required.', 'architect-ai-code-generator' );
 		}
 
 		if ( '' === $configuration->plural_label ) {
-			$errors[] = __( 'The plural label is required.', 'wp-architect-ai' );
+			$errors[] = __( 'The plural label is required.', 'architect-ai-code-generator' );
 		}
 
 		if ( '' !== $configuration->menu_position && false === filter_var( $configuration->menu_position, FILTER_VALIDATE_INT ) ) {
-			$errors[] = __( 'The menu position must be a whole number.', 'wp-architect-ai' );
+			$errors[] = __( 'The menu position must be a whole number.', 'architect-ai-code-generator' );
 		}
 
 		return $errors;

@@ -32,7 +32,7 @@ final class CodeGeneratorTest extends TestCase {
 		self::assertStringContainsString( "'publicly_queryable'   => true", $code );
 		self::assertStringContainsString( "'rewrite'             => array( 'slug' => 'book-reviews' )", $code );
 		self::assertStringContainsString( "array( 'title', 'editor', 'author', 'post-formats' )", $code );
-		self::assertStringContainsString( "'wp-architect-ai'", $code );
+		self::assertStringContainsString( "'architect-ai-code-generator'", $code );
 	}
 
 	/**

@@ -1,7 +1,7 @@
 ( function () {
 	'use strict';
 
-	const button = document.querySelector( '[data-wp-architect-ai-copy]' );
+	const button = document.querySelector( '[data-architect-ai-code-generator-copy]' );
 
 	if ( ! button ) {
 		return;
@@ -22,11 +22,11 @@
 
 		try {
 			await navigator.clipboard.writeText( preview.value );
-			status.textContent = wpArchitectAiGenerator.copied;
+			status.textContent = architectAiCodeGenerator.copied;
 		} catch ( error ) {
 			preview.focus();
 			preview.select();
-			status.textContent = wpArchitectAiGenerator.failed;
+			status.textContent = architectAiCodeGenerator.failed;
 		}
 	} );
 }() );

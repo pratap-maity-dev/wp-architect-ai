@@ -1,16 +1,16 @@
 <?php
 /**
- * Plugin Name:       WP Architect AI
- * Plugin URI:        https://wordpress.org/plugins/wp-architect-ai/
- * Description:       A foundation for generating secure, standards-compliant WordPress code from structured configuration.
- * Version:           0.4.0
+ * Plugin Name:       Architect AI Code Generator
+ * Plugin URI:        https://github.com/pratap-maity-dev/wp-architect-ai
+ * Description:       Generate reviewable WordPress code for post types, taxonomies, and REST API endpoints without executing it.
+ * Version:           0.5.0
  * Requires at least: 6.5
  * Requires PHP:      8.1
  * Author:            Pratap Maity
+ * Author URI:        https://github.com/pratap-maity-dev
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       wp-architect-ai
- * Domain Path:       /languages
+ * Text Domain:       architect-ai-code-generator
  *
  * @package PratapMaity\WPArchitectAI
  */
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'WP_ARCHITECT_AI_VERSION', '0.4.0' );
+define( 'WP_ARCHITECT_AI_VERSION', '0.5.0' );
 define( 'WP_ARCHITECT_AI_FILE', __FILE__ );
 define( 'WP_ARCHITECT_AI_MINIMUM_PHP_VERSION', '8.1' );
 define( 'WP_ARCHITECT_AI_MINIMUM_WORDPRESS_VERSION', '6.5' );
@@ -30,7 +30,7 @@ define( 'WP_ARCHITECT_AI_MINIMUM_WORDPRESS_VERSION', '6.5' );
  * @param string $message Notice message.
  * @return void
  */
-function wp_architect_ai_render_requirement_notice( string $message ): void {
+function architect_ai_code_generator_render_requirement_notice( string $message ): void {
 	?>
 	<div class="notice notice-error">
 		<p><?php echo esc_html( $message ); ?></p>
@@ -42,10 +42,10 @@ if ( version_compare( PHP_VERSION, WP_ARCHITECT_AI_MINIMUM_PHP_VERSION, '<' ) ) 
 	add_action(
 		'admin_notices',
 		static function (): void {
-			wp_architect_ai_render_requirement_notice(
+			architect_ai_code_generator_render_requirement_notice(
 				sprintf(
 					/* translators: %s: Minimum required PHP version. */
-					__( 'WP Architect AI requires PHP %s or later.', 'wp-architect-ai' ),
+					__( 'Architect AI Code Generator requires PHP %s or later.', 'architect-ai-code-generator' ),
 					WP_ARCHITECT_AI_MINIMUM_PHP_VERSION
 				)
 			);
@@ -60,10 +60,10 @@ if ( version_compare( (string) $wp_version, WP_ARCHITECT_AI_MINIMUM_WORDPRESS_VE
 	add_action(
 		'admin_notices',
 		static function (): void {
-			wp_architect_ai_render_requirement_notice(
+			architect_ai_code_generator_render_requirement_notice(
 				sprintf(
 					/* translators: %s: Minimum required WordPress version. */
-					__( 'WP Architect AI requires WordPress %s or later.', 'wp-architect-ai' ),
+					__( 'Architect AI Code Generator requires WordPress %s or later.', 'architect-ai-code-generator' ),
 					WP_ARCHITECT_AI_MINIMUM_WORDPRESS_VERSION
 				)
 			);
@@ -72,21 +72,21 @@ if ( version_compare( (string) $wp_version, WP_ARCHITECT_AI_MINIMUM_WORDPRESS_VE
 	return;
 }
 
-$wp_architect_ai_autoloader = __DIR__ . '/vendor/autoload.php';
+$architect_ai_code_generator_autoloader = __DIR__ . '/vendor/autoload.php';
 
-if ( ! is_readable( $wp_architect_ai_autoloader ) ) {
+if ( ! is_readable( $architect_ai_code_generator_autoloader ) ) {
 	add_action(
 		'admin_notices',
 		static function (): void {
-			wp_architect_ai_render_requirement_notice(
-				__( 'WP Architect AI could not start because its Composer dependencies are missing.', 'wp-architect-ai' )
+			architect_ai_code_generator_render_requirement_notice(
+				__( 'Architect AI Code Generator could not start because its Composer dependencies are missing.', 'architect-ai-code-generator' )
 			);
 		}
 	);
 	return;
 }
 
-require_once $wp_architect_ai_autoloader;
+require_once $architect_ai_code_generator_autoloader;
 
 register_activation_hook( __FILE__, array( PratapMaity\WPArchitectAI\Activator::class, 'activate' ) );
 register_deactivation_hook( __FILE__, array( PratapMaity\WPArchitectAI\Deactivator::class, 'deactivate' ) );

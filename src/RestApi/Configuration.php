@@ -7,6 +7,8 @@
 
 namespace PratapMaity\WPArchitectAI\RestApi;
 
+defined( 'ABSPATH' ) || exit;
+
 /**
  * Immutable sanitized REST endpoint configuration.
  */

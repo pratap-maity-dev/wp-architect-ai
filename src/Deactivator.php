@@ -7,6 +7,8 @@
 
 namespace PratapMaity\WPArchitectAI;
 
+defined( 'ABSPATH' ) || exit;
+
 /**
  * Handles plugin deactivation.
  */

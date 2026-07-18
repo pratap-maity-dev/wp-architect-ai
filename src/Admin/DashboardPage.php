@@ -7,6 +7,8 @@
 
 namespace PratapMaity\WPArchitectAI\Admin;
 
+defined( 'ABSPATH' ) || exit;
+
 /**
  * Registers and renders the plugin dashboard.
  */
@@ -33,10 +35,10 @@ final class DashboardPage {
 	 */
 	public function register_menu(): void {
 		add_menu_page(
-			esc_html__( 'WP Architect AI', 'wp-architect-ai' ),
-			esc_html__( 'WP Architect AI', 'wp-architect-ai' ),
+			esc_html__( 'Architect AI Code Generator', 'architect-ai-code-generator' ),
+			esc_html__( 'Architect AI Code Generator', 'architect-ai-code-generator' ),
 			self::CAPABILITY,
-			'wp-architect-ai',
+			'architect-ai-code-generator',
 			array( $this, 'render' ),
 			'dashicons-editor-code',
 			58
@@ -51,19 +53,19 @@ final class DashboardPage {
 	public function render(): void {
 		if ( ! current_user_can( self::CAPABILITY ) ) {
 			wp_die(
-				esc_html__( 'You do not have permission to access this page.', 'wp-architect-ai' ),
-				esc_html__( 'Access denied', 'wp-architect-ai' ),
+				esc_html__( 'You do not have permission to access this page.', 'architect-ai-code-generator' ),
+				esc_html__( 'Access denied', 'architect-ai-code-generator' ),
 				array( 'response' => 403 )
 			);
 		}
 		?>
 		<div class="wrap">
-			<h1><?php echo esc_html__( 'WP Architect AI', 'wp-architect-ai' ); ?></h1>
+			<h1><?php echo esc_html__( 'Architect AI Code Generator', 'architect-ai-code-generator' ); ?></h1>
 			<p>
 				<?php
 				echo esc_html__(
 					'Use the CPT, Taxonomy, and REST API Generators to create reviewable WordPress code.',
-					'wp-architect-ai'
+					'architect-ai-code-generator'
 				);
 				?>
 			</p>

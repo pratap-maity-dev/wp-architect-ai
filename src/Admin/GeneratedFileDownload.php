@@ -7,6 +7,8 @@
 
 namespace PratapMaity\WPArchitectAI\Admin;
 
+defined( 'ABSPATH' ) || exit;
+
 /**
  * Streams generated PHP without writing it to disk.
  */
@@ -22,8 +24,8 @@ final class GeneratedFileDownload {
 	public function send( string $filename, string $code ): never {
 		if ( 1 !== preg_match( '/^[a-z0-9_-]+\.php$/', $filename ) ) {
 			wp_die(
-				esc_html__( 'The generated filename is invalid.', 'wp-architect-ai' ),
-				esc_html__( 'Download failed', 'wp-architect-ai' ),
+				esc_html__( 'The generated filename is invalid.', 'architect-ai-code-generator' ),
+				esc_html__( 'Download failed', 'architect-ai-code-generator' ),
 				array( 'response' => 500 )
 			);
 		}

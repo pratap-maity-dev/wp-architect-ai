@@ -7,6 +7,8 @@
 
 namespace PratapMaity\WPArchitectAI\Taxonomy;
 
+defined( 'ABSPATH' ) || exit;
+
 /**
  * Immutable sanitized taxonomy configuration.
  */
