@@ -4,7 +4,7 @@ Tags: developer tools, code generator, development
 Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 8.1
-Stable tag: 0.3.0
+Stable tag: 0.4.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,7 +12,7 @@ A foundation for generating secure, standards-compliant WordPress code from stru
 
 == Description ==
 
-WP Architect AI is a WordPress developer productivity plugin. It includes secure Custom Post Type and Taxonomy Generators that produce reviewable and downloadable PHP registration files.
+WP Architect AI is a WordPress developer productivity plugin. It includes secure Custom Post Type, Taxonomy, and REST API Endpoint Generators that produce reviewable and downloadable PHP files.
 
 External AI service integrations are not included. Generated code is displayed or downloaded only; the plugin does not execute it or modify theme or plugin files.
 
@@ -38,6 +38,14 @@ No. It generates a text preview and downloadable file, but never executes the co
 1. The WP Architect AI administration dashboard.
 
 == Changelog ==
+
+= 0.4.0 =
+
+* Added the secure REST API Endpoint Generator with object-oriented controller output.
+* Added strict namespace, route, method, authentication, query and response-field validation.
+* Added pagination, search, taxonomy filtering, restricted meta filtering and optional caching output.
+* Added secure preview, clipboard copying and streamed PHP downloads.
+* Added REST generator security, sanitization, validation and code-generation tests.
 
 = 0.3.0 =
 

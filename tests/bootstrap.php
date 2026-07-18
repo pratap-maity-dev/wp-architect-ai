@@ -100,3 +100,8 @@ require_once dirname( __DIR__ ) . '/src/Taxonomy/Configuration.php';
 require_once dirname( __DIR__ ) . '/src/Taxonomy/ConfigurationValidator.php';
 require_once dirname( __DIR__ ) . '/src/Taxonomy/ConfigurationSanitizer.php';
 require_once dirname( __DIR__ ) . '/src/Taxonomy/CodeGenerator.php';
+require_once dirname( __DIR__ ) . '/src/RestApi/Configuration.php';
+require_once dirname( __DIR__ ) . '/src/RestApi/ConfigurationValidator.php';
+require_once dirname( __DIR__ ) . '/src/RestApi/ConfigurationSanitizer.php';
+require_once dirname( __DIR__ ) . '/src/RestApi/CodeGenerator.php';
+require_once __DIR__ . '/RestConfigurationFactory.php';

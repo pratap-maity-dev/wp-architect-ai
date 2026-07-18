@@ -3,7 +3,7 @@
  * Plugin Name:       WP Architect AI
  * Plugin URI:        https://wordpress.org/plugins/wp-architect-ai/
  * Description:       A foundation for generating secure, standards-compliant WordPress code from structured configuration.
- * Version:           0.3.0
+ * Version:           0.4.0
  * Requires at least: 6.5
  * Requires PHP:      8.1
  * Author:            Pratap Maity
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'WP_ARCHITECT_AI_VERSION', '0.3.0' );
+define( 'WP_ARCHITECT_AI_VERSION', '0.4.0' );
 define( 'WP_ARCHITECT_AI_FILE', __FILE__ );
 define( 'WP_ARCHITECT_AI_MINIMUM_PHP_VERSION', '8.1' );
 define( 'WP_ARCHITECT_AI_MINIMUM_WORDPRESS_VERSION', '6.5' );
