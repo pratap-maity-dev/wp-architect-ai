@@ -1,10 +1,15 @@
 ( function () {
 	'use strict';
 
-	const button = document.getElementById( 'wp-architect-ai-copy-code' );
-	const status = document.getElementById( 'wp-architect-ai-copy-status' );
+	const button = document.querySelector( '[data-wp-architect-ai-copy]' );
 
-	if ( ! button || ! status ) {
+	if ( ! button ) {
+		return;
+	}
+
+	const status = document.getElementById( button.dataset.status );
+
+	if ( ! status ) {
 		return;
 	}
 
@@ -17,11 +22,11 @@
 
 		try {
 			await navigator.clipboard.writeText( preview.value );
-			status.textContent = wpArchitectAiCptGenerator.copied;
+			status.textContent = wpArchitectAiGenerator.copied;
 		} catch ( error ) {
 			preview.focus();
 			preview.select();
-			status.textContent = wpArchitectAiCptGenerator.failed;
+			status.textContent = wpArchitectAiGenerator.failed;
 		}
 	} );
 }() );

@@ -62,7 +62,7 @@ final class DashboardPage {
 			<p>
 				<?php
 				echo esc_html__(
-					'Use the CPT Generator to create a reviewable custom post type registration file.',
+					'Use the CPT and Taxonomy Generators to create reviewable WordPress registration files.',
 					'wp-architect-ai'
 				);
 				?>

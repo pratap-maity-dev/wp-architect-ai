@@ -116,7 +116,7 @@ $wp_architect_ai_support_fields = array(
 		<h2><?php echo esc_html__( 'Generated code preview', 'wp-architect-ai' ); ?></h2>
 		<textarea id="wp-architect-ai-generated-code" class="large-text code" rows="30" readonly aria-label="<?php echo esc_attr__( 'Generated PHP code', 'wp-architect-ai' ); ?>"><?php echo esc_textarea( $generated_code ); ?></textarea>
 		<p>
-			<button type="button" class="button" id="wp-architect-ai-copy-code" data-target="wp-architect-ai-generated-code"><?php echo esc_html__( 'Copy to clipboard', 'wp-architect-ai' ); ?></button>
+			<button type="button" class="button" id="wp-architect-ai-copy-code" data-wp-architect-ai-copy data-target="wp-architect-ai-generated-code" data-status="wp-architect-ai-copy-status"><?php echo esc_html__( 'Copy to clipboard', 'wp-architect-ai' ); ?></button>
 			<span id="wp-architect-ai-copy-status" role="status" aria-live="polite"></span>
 		</p>
 		<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">

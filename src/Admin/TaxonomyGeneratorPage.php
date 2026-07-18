@@ -1,26 +1,26 @@
 <?php
 /**
- * Custom post type generator admin page.
+ * Taxonomy generator admin page.
  *
  * @package PratapMaity\WPArchitectAI
  */
 
 namespace PratapMaity\WPArchitectAI\Admin;
 
-use PratapMaity\WPArchitectAI\PostType\CodeGenerator;
-use PratapMaity\WPArchitectAI\PostType\Configuration;
-use PratapMaity\WPArchitectAI\PostType\ConfigurationSanitizer;
-use PratapMaity\WPArchitectAI\PostType\ConfigurationValidator;
+use PratapMaity\WPArchitectAI\Taxonomy\CodeGenerator;
+use PratapMaity\WPArchitectAI\Taxonomy\Configuration;
+use PratapMaity\WPArchitectAI\Taxonomy\ConfigurationSanitizer;
+use PratapMaity\WPArchitectAI\Taxonomy\ConfigurationValidator;
 
 /**
- * Handles the custom post type generator interface and download.
+ * Handles the taxonomy generator interface and download.
  */
-final class PostTypeGeneratorPage {
+final class TaxonomyGeneratorPage {
 
 	private const CAPABILITY      = 'manage_options';
-	private const MENU_SLUG       = 'wp-architect-ai-cpt-generator';
-	private const GENERATE_ACTION = 'wp_architect_ai_generate_cpt';
-	private const DOWNLOAD_ACTION = 'wp_architect_ai_download_cpt';
+	private const MENU_SLUG       = 'wp-architect-ai-taxonomy-generator';
+	private const GENERATE_ACTION = 'wp_architect_ai_generate_taxonomy';
+	private const DOWNLOAD_ACTION = 'wp_architect_ai_download_taxonomy';
 
 	/**
 	 * Constructor.
@@ -57,8 +57,8 @@ final class PostTypeGeneratorPage {
 	public function register_menu(): void {
 		add_submenu_page(
 			'wp-architect-ai',
-			esc_html__( 'Custom Post Type Generator', 'wp-architect-ai' ),
-			esc_html__( 'CPT Generator', 'wp-architect-ai' ),
+			esc_html__( 'Taxonomy Generator', 'wp-architect-ai' ),
+			esc_html__( 'Taxonomy Generator', 'wp-architect-ai' ),
 			self::CAPABILITY,
 			self::MENU_SLUG,
 			array( $this, 'render' )
@@ -113,30 +113,30 @@ final class PostTypeGeneratorPage {
 				: '';
 
 			if ( self::GENERATE_ACTION === $request_action ) {
-				$configuration = $this->sanitizer->sanitize( $_POST ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitized by the dedicated sanitizer immediately.
+				$configuration = $this->sanitizer->sanitize( $_POST ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitized immediately by the dedicated sanitizer.
 				$errors        = $this->validator->validate( $configuration );
 
 				if ( array() === $errors ) {
 					$generated_code  = $this->generator->generate( $configuration );
-					$success_message = __( 'Custom post type code generated successfully.', 'wp-architect-ai' );
+					$success_message = __( 'Taxonomy code generated successfully.', 'wp-architect-ai' );
 				}
 			}
 		}
 
-		$template = dirname( __DIR__, 2 ) . '/templates/admin/cpt-generator.php';
+		$template = dirname( __DIR__, 2 ) . '/templates/admin/taxonomy-generator.php';
 		include $template;
 	}
 
 	/**
 	 * Sends validated generated code as a PHP attachment.
 	 *
-	 * @return void
+	 * @return never
 	 */
-	public function download(): void {
+	public function download(): never {
 		$this->assert_capability();
 		check_admin_referer( self::DOWNLOAD_ACTION );
 
-		$configuration = $this->sanitizer->sanitize( $_POST ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitized by the dedicated sanitizer immediately.
+		$configuration = $this->sanitizer->sanitize( $_POST ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitized immediately by the dedicated sanitizer.
 		$errors        = $this->validator->validate( $configuration );
 
 		if ( array() !== $errors ) {
@@ -147,8 +147,7 @@ final class PostTypeGeneratorPage {
 			);
 		}
 
-		$filename = $this->generator->filename( $configuration );
-		$this->download->send( $filename, $this->generator->generate( $configuration ) );
+		$this->download->send( $this->generator->filename( $configuration ), $this->generator->generate( $configuration ) );
 	}
 
 	/**
@@ -185,23 +184,6 @@ final class PostTypeGeneratorPage {
 	 * @return Configuration
 	 */
 	private function empty_configuration(): Configuration {
-		return new Configuration(
-			'',
-			'',
-			'',
-			'',
-			true,
-			true,
-			true,
-			true,
-			true,
-			false,
-			true,
-			false,
-			'',
-			'dashicons-admin-post',
-			'',
-			array( 'title', 'editor' )
-		);
+		return new Configuration( '', '', '', array( 'post' ), '', '', true, true, true, false, true, false, true, true, '', false, true );
 	}
 }

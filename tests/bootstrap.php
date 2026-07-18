@@ -96,3 +96,7 @@ require_once dirname( __DIR__ ) . '/src/PostType/Configuration.php';
 require_once dirname( __DIR__ ) . '/src/PostType/ConfigurationValidator.php';
 require_once dirname( __DIR__ ) . '/src/PostType/ConfigurationSanitizer.php';
 require_once dirname( __DIR__ ) . '/src/PostType/CodeGenerator.php';
+require_once dirname( __DIR__ ) . '/src/Taxonomy/Configuration.php';
+require_once dirname( __DIR__ ) . '/src/Taxonomy/ConfigurationValidator.php';
+require_once dirname( __DIR__ ) . '/src/Taxonomy/ConfigurationSanitizer.php';
+require_once dirname( __DIR__ ) . '/src/Taxonomy/CodeGenerator.php';
