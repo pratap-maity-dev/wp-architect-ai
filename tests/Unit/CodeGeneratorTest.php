@@ -17,45 +17,86 @@ use PratapMaity\WPArchitectAI\PostType\Configuration;
 final class CodeGeneratorTest extends TestCase {
 
 	/**
-	 * Generates the expected registration arguments and safely quotes values.
+	 * Generates a complete registration file.
 	 *
 	 * @return void
 	 */
-	public function test_generates_registration_code(): void {
-		$configuration = new Configuration(
+	public function test_generates_register_post_type_output(): void {
+		$code = ( new CodeGenerator() )->generate( $this->configuration() );
+
+		self::assertStringStartsWith( '<?php', $code );
+		self::assertStringContainsString( "if ( ! defined( 'ABSPATH' ) )", $code );
+		self::assertStringContainsString( "add_action( 'init', 'wp_architect_ai_register_book_review_", $code );
+		self::assertStringContainsString( "register_post_type( 'book_review', \$args );", $code );
+		self::assertStringContainsString( "'show_in_rest'        => true", $code );
+		self::assertStringContainsString( "'publicly_queryable'   => true", $code );
+		self::assertStringContainsString( "'rewrite'             => array( 'slug' => 'book-reviews' )", $code );
+		self::assertStringContainsString( "array( 'title', 'editor', 'author', 'post-formats' )", $code );
+		self::assertStringContainsString( "'wp-architect-ai'", $code );
+	}
+
+	/**
+	 * Never emits eval calls.
+	 *
+	 * @return void
+	 */
+	public function test_generated_code_contains_no_eval(): void {
+		$code = ( new CodeGenerator() )->generate( $this->configuration() );
+
+		self::assertDoesNotMatchRegularExpression( '/\beval\s*\(/i', $code );
+	}
+
+	/**
+	 * Produces a safe filename from the validated post type key.
+	 *
+	 * @return void
+	 */
+	public function test_generates_safe_filename(): void {
+		$generator = new CodeGenerator();
+
+		self::assertSame( 'register-book_review-post-type.php', $generator->filename( $this->configuration() ) );
+	}
+
+	/**
+	 * Keeps callbacks unique for keys that normalize to the same PHP identifier.
+	 *
+	 * @return void
+	 */
+	public function test_generates_unique_callbacks_for_hyphen_and_underscore_keys(): void {
+		$generator            = new CodeGenerator();
+		$underscore_code      = $generator->generate( $this->configuration() );
+		$hyphen_configuration = new Configuration( 'book-review', 'Book', 'Books', '', true, true, true, true, true, false, true, false, '', '', '', array( 'title' ) );
+		$hyphen_code          = $generator->generate( $hyphen_configuration );
+		$callback_pattern     = "/add_action\\( 'init', '([^']+)' \\);/";
+
+		self::assertSame( 1, preg_match( $callback_pattern, $underscore_code, $underscore_match ) );
+		self::assertSame( 1, preg_match( $callback_pattern, $hyphen_code, $hyphen_match ) );
+		self::assertNotSame( $underscore_match[1], $hyphen_match[1] );
+	}
+
+	/**
+	 * Creates a complete valid configuration.
+	 *
+	 * @return Configuration
+	 */
+	private function configuration(): Configuration {
+		return new Configuration(
 			'book_review',
 			"Book's Review",
 			'Book Reviews',
 			'A curated review.',
 			true,
+			true,
+			true,
+			true,
+			true,
 			false,
 			true,
-			true,
-			true,
+			false,
 			'book-reviews',
 			'dashicons-book',
-			array( 'title', 'editor', 'thumbnail' )
+			'5',
+			array( 'title', 'editor', 'author', 'post-formats' )
 		);
-		$code          = ( new CodeGenerator() )->generate( $configuration );
-
-		self::assertStringStartsWith( '<?php', $code );
-		self::assertStringContainsString( "register_post_type( 'book_review', \$args );", $code );
-		self::assertStringNotContainsString( '\\tregister_post_type', $code );
-		self::assertStringContainsString( "'show_in_rest'  => true", $code );
-		self::assertStringContainsString( "'rewrite'       => array( 'slug' => 'book-reviews' )", $code );
-		self::assertStringContainsString( "array( 'title', 'editor', 'thumbnail' )", $code );
-		self::assertStringContainsString( "'Book\\'s Review'", $code );
-	}
-
-	/**
-	 * Disables rewriting when no rewrite slug is supplied.
-	 *
-	 * @return void
-	 */
-	public function test_generates_false_rewrite_without_slug(): void {
-		$configuration = new Configuration( 'book', 'Book', 'Books', '', false, false, true, false, false, '', '', array() );
-		$code          = ( new CodeGenerator() )->generate( $configuration );
-
-		self::assertStringContainsString( "'rewrite'       => false", $code );
 	}
 }

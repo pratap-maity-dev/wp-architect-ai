@@ -99,9 +99,10 @@ final class PostTypeGeneratorPage {
 	public function render(): void {
 		$this->assert_capability();
 
-		$configuration  = $this->empty_configuration();
-		$errors         = array();
-		$generated_code = '';
+		$configuration   = $this->empty_configuration();
+		$errors          = array();
+		$generated_code  = '';
+		$success_message = '';
 
 		if ( $this->is_post_request() ) {
 			check_admin_referer( self::GENERATE_ACTION );
@@ -114,7 +115,8 @@ final class PostTypeGeneratorPage {
 				$errors        = $this->validator->validate( $configuration );
 
 				if ( array() === $errors ) {
-					$generated_code = $this->generator->generate( $configuration );
+					$generated_code  = $this->generator->generate( $configuration );
+					$success_message = __( 'Custom post type code generated successfully.', 'wp-architect-ai' );
 				}
 			}
 		}
@@ -143,7 +145,7 @@ final class PostTypeGeneratorPage {
 			);
 		}
 
-		$filename = 'register-' . $configuration->post_type_key . '-post-type.php';
+		$filename = $this->generator->filename( $configuration );
 		nocache_headers();
 		header( 'Content-Type: application/x-httpd-php; charset=UTF-8' );
 		header( 'Content-Disposition: attachment; filename="' . $filename . '"' );
@@ -186,6 +188,23 @@ final class PostTypeGeneratorPage {
 	 * @return Configuration
 	 */
 	private function empty_configuration(): Configuration {
-		return new Configuration( '', '', '', '', true, false, true, true, true, '', 'dashicons-admin-post', array( 'title', 'editor' ) );
+		return new Configuration(
+			'',
+			'',
+			'',
+			'',
+			true,
+			true,
+			true,
+			true,
+			true,
+			false,
+			true,
+			false,
+			'',
+			'dashicons-admin-post',
+			'',
+			array( 'title', 'editor' )
+		);
 	}
 }

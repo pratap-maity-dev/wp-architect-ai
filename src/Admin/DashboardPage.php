@@ -62,7 +62,7 @@ final class DashboardPage {
 			<p>
 				<?php
 				echo esc_html__(
-					'The plugin foundation is ready. Generator features will be added in a future release.',
+					'Use the CPT Generator to create a reviewable custom post type registration file.',
 					'wp-architect-ai'
 				);
 				?>

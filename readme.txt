@@ -4,7 +4,7 @@ Tags: developer tools, code generator, development
 Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 8.1
-Stable tag: 0.1.0
+Stable tag: 0.2.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,6 +38,14 @@ No. It generates a text preview and downloadable file, but never executes the co
 1. The WP Architect AI administration dashboard.
 
 == Changelog ==
+
+= 0.2.0 =
+
+* Expanded the Custom Post Type Generator with complete registration options and supports.
+* Added strict sanitization, validation, capability and nonce protections.
+* Added secure PHP preview, clipboard copying and streamed downloads.
+* Added complete translation-ready labels and collision-safe callback names.
+* Expanded automated validation, sanitization and code-generation tests.
 
 = 0.1.0 =
 
