@@ -48,25 +48,25 @@ final class ConfigurationValidator {
 		$errors = array();
 
 		if ( '' === $configuration->post_type_key ) {
-			$errors[] = __( 'The post type key is required.', 'architect-ai-code-generator' );
+			$errors[] = __( 'The post type key is required.', 'pmorix-post-type-taxonomy-rest-generator' );
 		} elseif ( 1 !== preg_match( '/^[a-z0-9_-]+$/', $configuration->post_type_key ) ) {
-			$errors[] = __( 'The post type key may contain only lowercase letters, numbers, underscores, or hyphens.', 'architect-ai-code-generator' );
+			$errors[] = __( 'The post type key may contain only lowercase letters, numbers, underscores, or hyphens.', 'pmorix-post-type-taxonomy-rest-generator' );
 		} elseif ( 20 < strlen( $configuration->post_type_key ) ) {
-			$errors[] = __( 'The post type key must not exceed 20 characters.', 'architect-ai-code-generator' );
+			$errors[] = __( 'The post type key must not exceed 20 characters.', 'pmorix-post-type-taxonomy-rest-generator' );
 		} elseif ( in_array( $configuration->post_type_key, self::RESERVED_KEYS, true ) ) {
-			$errors[] = __( 'The post type key is reserved by WordPress.', 'architect-ai-code-generator' );
+			$errors[] = __( 'The post type key is reserved by WordPress.', 'pmorix-post-type-taxonomy-rest-generator' );
 		}
 
 		if ( '' === $configuration->singular_label ) {
-			$errors[] = __( 'The singular label is required.', 'architect-ai-code-generator' );
+			$errors[] = __( 'The singular label is required.', 'pmorix-post-type-taxonomy-rest-generator' );
 		}
 
 		if ( '' === $configuration->plural_label ) {
-			$errors[] = __( 'The plural label is required.', 'architect-ai-code-generator' );
+			$errors[] = __( 'The plural label is required.', 'pmorix-post-type-taxonomy-rest-generator' );
 		}
 
 		if ( '' !== $configuration->menu_position && false === filter_var( $configuration->menu_position, FILTER_VALIDATE_INT ) ) {
-			$errors[] = __( 'The menu position must be a whole number.', 'architect-ai-code-generator' );
+			$errors[] = __( 'The menu position must be a whole number.', 'pmorix-post-type-taxonomy-rest-generator' );
 		}
 
 		return $errors;

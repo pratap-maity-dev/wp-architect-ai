@@ -27,11 +27,11 @@ final class Activator {
 				esc_html(
 					sprintf(
 						/* translators: %s: Minimum required PHP version. */
-						__( 'Architect AI Code Generator requires PHP %s or later.', 'architect-ai-code-generator' ),
+						__( 'PMorix Post Type, Taxonomy & REST Generator requires PHP %s or later.', 'pmorix-post-type-taxonomy-rest-generator' ),
 						WP_ARCHITECT_AI_MINIMUM_PHP_VERSION
 					)
 				),
-				esc_html__( 'Plugin activation failed', 'architect-ai-code-generator' ),
+				esc_html__( 'Plugin activation failed', 'pmorix-post-type-taxonomy-rest-generator' ),
 				array( 'back_link' => true )
 			);
 		}
@@ -41,11 +41,11 @@ final class Activator {
 				esc_html(
 					sprintf(
 						/* translators: %s: Minimum required WordPress version. */
-						__( 'Architect AI Code Generator requires WordPress %s or later.', 'architect-ai-code-generator' ),
+						__( 'PMorix Post Type, Taxonomy & REST Generator requires WordPress %s or later.', 'pmorix-post-type-taxonomy-rest-generator' ),
 						WP_ARCHITECT_AI_MINIMUM_WORDPRESS_VERSION
 					)
 				),
-				esc_html__( 'Plugin activation failed', 'architect-ai-code-generator' ),
+				esc_html__( 'Plugin activation failed', 'pmorix-post-type-taxonomy-rest-generator' ),
 				array( 'back_link' => true )
 			);
 		}

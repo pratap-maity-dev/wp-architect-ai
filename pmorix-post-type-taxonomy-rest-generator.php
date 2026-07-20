@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:       Architect AI Code Generator
+ * Plugin Name:       PMorix Post Type, Taxonomy & REST Generator
  * Plugin URI:        https://github.com/pratap-maity-dev/wp-architect-ai
  * Description:       Generate reviewable WordPress code for post types, taxonomies, and REST API endpoints without executing it.
  * Version:           0.5.0
@@ -10,7 +10,7 @@
  * Author URI:        https://github.com/pratap-maity-dev
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       architect-ai-code-generator
+ * Text Domain:       pmorix-post-type-taxonomy-rest-generator
  *
  * @package PratapMaity\WPArchitectAI
  */
@@ -45,7 +45,7 @@ if ( version_compare( PHP_VERSION, WP_ARCHITECT_AI_MINIMUM_PHP_VERSION, '<' ) ) 
 			architect_ai_code_generator_render_requirement_notice(
 				sprintf(
 					/* translators: %s: Minimum required PHP version. */
-					__( 'Architect AI Code Generator requires PHP %s or later.', 'architect-ai-code-generator' ),
+					__( 'PMorix Post Type, Taxonomy & REST Generator requires PHP %s or later.', 'pmorix-post-type-taxonomy-rest-generator' ),
 					WP_ARCHITECT_AI_MINIMUM_PHP_VERSION
 				)
 			);
@@ -63,7 +63,7 @@ if ( version_compare( (string) $wp_version, WP_ARCHITECT_AI_MINIMUM_WORDPRESS_VE
 			architect_ai_code_generator_render_requirement_notice(
 				sprintf(
 					/* translators: %s: Minimum required WordPress version. */
-					__( 'Architect AI Code Generator requires WordPress %s or later.', 'architect-ai-code-generator' ),
+					__( 'PMorix Post Type, Taxonomy & REST Generator requires WordPress %s or later.', 'pmorix-post-type-taxonomy-rest-generator' ),
 					WP_ARCHITECT_AI_MINIMUM_WORDPRESS_VERSION
 				)
 			);
@@ -79,7 +79,7 @@ if ( ! is_readable( $architect_ai_code_generator_autoloader ) ) {
 		'admin_notices',
 		static function (): void {
 			architect_ai_code_generator_render_requirement_notice(
-				__( 'Architect AI Code Generator could not start because its Composer dependencies are missing.', 'architect-ai-code-generator' )
+				__( 'PMorix Post Type, Taxonomy & REST Generator could not start because its Composer dependencies are missing.', 'pmorix-post-type-taxonomy-rest-generator' )
 			);
 		}
 	);

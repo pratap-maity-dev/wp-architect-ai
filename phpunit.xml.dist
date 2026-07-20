@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit bootstrap="tests/bootstrap.php" colors="true" cacheResult="false">
 	<testsuites>
-		<testsuite name="Architect AI Code Generator">
+		<testsuite name="PMorix Post Type, Taxonomy &amp; REST Generator">
 			<directory>tests/Unit</directory>
 		</testsuite>
 	</testsuites>

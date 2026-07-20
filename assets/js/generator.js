@@ -1,7 +1,7 @@
 ( function () {
 	'use strict';
 
-	const button = document.querySelector( '[data-architect-ai-code-generator-copy]' );
+	const button = document.querySelector( '[data-pmorix-post-type-taxonomy-rest-generator-copy]' );
 
 	if ( ! button ) {
 		return;

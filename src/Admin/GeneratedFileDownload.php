@@ -24,8 +24,8 @@ final class GeneratedFileDownload {
 	public function send( string $filename, string $code ): never {
 		if ( 1 !== preg_match( '/^[a-z0-9_-]+\.php$/', $filename ) ) {
 			wp_die(
-				esc_html__( 'The generated filename is invalid.', 'architect-ai-code-generator' ),
-				esc_html__( 'Download failed', 'architect-ai-code-generator' ),
+				esc_html__( 'The generated filename is invalid.', 'pmorix-post-type-taxonomy-rest-generator' ),
+				esc_html__( 'Download failed', 'pmorix-post-type-taxonomy-rest-generator' ),
 				array( 'response' => 500 )
 			);
 		}

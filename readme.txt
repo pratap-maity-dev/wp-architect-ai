@@ -1,4 +1,4 @@
-=== Architect AI Code Generator ===
+=== PMorix Post Type, Taxonomy & REST Generator ===
 Contributors: pratapmaity
 Tags: code generator, custom post types, taxonomy, rest api, developer tools
 Requires at least: 6.5
@@ -12,7 +12,7 @@ Generate reviewable WordPress code for post types, taxonomies, and REST API endp
 
 == Description ==
 
-Architect AI Code Generator is a WordPress developer productivity plugin. It includes Custom Post Type, Taxonomy, and REST API Endpoint Generators that produce reviewable and downloadable PHP files.
+PMorix Post Type, Taxonomy & REST Generator is a WordPress developer productivity plugin. It includes Custom Post Type, Taxonomy, and REST API Endpoint Generators that produce reviewable and downloadable PHP files.
 
 Configure an admin form, validate the settings, preview the generated PHP, copy it to the clipboard, or download it for review. Generated code is never executed or installed by the plugin and no theme or plugin files are modified.
 
@@ -24,13 +24,13 @@ Configure an admin form, validate the settings, preview the generated PHP, copy 
 
 = Privacy =
 
-Architect AI Code Generator does not collect personal data, contact external services, or use tracking. Form values and generated code are not stored by the plugin.
+PMorix Post Type, Taxonomy & REST Generator does not collect personal data, contact external services, or use tracking. Form values and generated code are not stored by the plugin.
 
 == Installation ==
 
-1. Upload the Architect AI Code Generator ZIP through Plugins > Add New > Upload Plugin, or copy the `architect-ai-code-generator` directory into `/wp-content/plugins/`.
-2. Activate Architect AI Code Generator through the Plugins screen in WordPress.
-3. Open Architect AI Code Generator in the WordPress administration menu.
+1. Upload the PMorix Post Type, Taxonomy & REST Generator ZIP through Plugins > Add New > Upload Plugin, or copy the `pmorix-post-type-taxonomy-rest-generator` directory into `/wp-content/plugins/`.
+2. Activate PMorix Post Type, Taxonomy & REST Generator through the Plugins screen in WordPress.
+3. Open PMorix Post Type, Taxonomy & REST Generator in the WordPress administration menu.
 
 == Frequently Asked Questions ==
 
@@ -40,7 +40,7 @@ No. AI API integration is not part of this foundation release.
 
 = Where should I place generated code? =
 
-Review and test the generated PHP in a staging environment, then add it to a custom plugin or another appropriate development project. Architect AI Code Generator does not install it for you.
+Review and test the generated PHP in a staging environment, then add it to a custom plugin or another appropriate development project. PMorix Post Type, Taxonomy & REST Generator does not install it for you.
 
 = Does this release execute or install generated PHP code? =
 
@@ -50,7 +50,7 @@ No. It generates a text preview and downloadable file, but never executes the co
 
 = 0.5.0 =
 
-* Renamed the plugin to Architect AI Code Generator for WordPress.org directory compatibility.
+* Renamed the plugin to PMorix Post Type, Taxonomy & REST Generator for WordPress.org directory compatibility.
 * Added a complete production Composer autoloader to the distributable plugin.
 * Updated directory metadata, privacy information, installation guidance, and release packaging.
 * Added direct-file access protection throughout runtime PHP files.
@@ -83,5 +83,5 @@ No. It generates a text preview and downloadable file, but never executes the co
 
 * Added the initial plugin bootstrap and Composer autoloading.
 * Added activation and deactivation handlers.
-* Added the original WP Architect AI administration dashboard.
+* Added the original PMorix Post Type, Taxonomy & REST Generator administration dashboard.
 * Added the Custom Post Type Generator with preview and secure download.

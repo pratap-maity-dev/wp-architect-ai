@@ -44,7 +44,7 @@ final class CodeGenerator {
 		);
 
 		foreach ( $labels as $key => $label ) {
-			$lines[] = "\t\t" . $this->export( $key ) . ' => __( ' . $this->export( $label ) . ", 'architect-ai-code-generator' ),";
+			$lines[] = "\t\t" . $this->export( $key ) . ' => __( ' . $this->export( $label ) . ", 'pmorix-post-type-taxonomy-rest-generator' ),";
 		}
 
 		$lines = array_merge(

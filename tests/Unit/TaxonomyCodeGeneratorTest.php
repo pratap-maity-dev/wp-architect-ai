@@ -32,7 +32,7 @@ final class TaxonomyCodeGeneratorTest extends TestCase {
 		self::assertStringContainsString( "'hierarchical'       => true", $code );
 		self::assertStringContainsString( "'query_var'          => true", $code );
 		self::assertStringContainsString( "array( 'slug' => 'book-genres', 'hierarchical' => true )", $code );
-		self::assertStringContainsString( "'architect-ai-code-generator'", $code );
+		self::assertStringContainsString( "'pmorix-post-type-taxonomy-rest-generator'", $code );
 	}
 
 	/**

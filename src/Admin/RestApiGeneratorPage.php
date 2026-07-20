@@ -20,7 +20,7 @@ use PratapMaity\WPArchitectAI\RestApi\ConfigurationValidator;
 final class RestApiGeneratorPage {
 
 	private const CAPABILITY      = 'manage_options';
-	private const MENU_SLUG       = 'architect-ai-code-generator-rest-api-generator';
+	private const MENU_SLUG       = 'pmorix-post-type-taxonomy-rest-generator-rest-api-generator';
 	private const GENERATE_ACTION = 'wp_architect_ai_generate_rest_api';
 	private const DOWNLOAD_ACTION = 'wp_architect_ai_download_rest_api';
 
@@ -50,9 +50,9 @@ final class RestApiGeneratorPage {
 	/** Registers the generator submenu. @return void */
 	public function register_menu(): void {
 		add_submenu_page(
-			'architect-ai-code-generator',
-			esc_html__( 'REST API Generator', 'architect-ai-code-generator' ),
-			esc_html__( 'REST API Generator', 'architect-ai-code-generator' ),
+			'pmorix-post-type-taxonomy-rest-generator',
+			esc_html__( 'REST API Generator', 'pmorix-post-type-taxonomy-rest-generator' ),
+			esc_html__( 'REST API Generator', 'pmorix-post-type-taxonomy-rest-generator' ),
 			self::CAPABILITY,
 			self::MENU_SLUG,
 			array( $this, 'render' )
@@ -66,17 +66,17 @@ final class RestApiGeneratorPage {
 	 * @return void
 	 */
 	public function enqueue_assets( string $hook_suffix ): void {
-		if ( 'architect-ai-code-generator_page_' . self::MENU_SLUG !== $hook_suffix ) {
+		if ( 'pmorix-post-type-taxonomy-rest-generator_page_' . self::MENU_SLUG !== $hook_suffix ) {
 			return;
 		}
 
-		wp_enqueue_script( 'architect-ai-code-generator-generator', plugins_url( 'assets/js/generator.js', WP_ARCHITECT_AI_FILE ), array(), WP_ARCHITECT_AI_VERSION, true );
+		wp_enqueue_script( 'pmorix-post-type-taxonomy-rest-generator-generator', plugins_url( 'assets/js/generator.js', WP_ARCHITECT_AI_FILE ), array(), WP_ARCHITECT_AI_VERSION, true );
 		wp_localize_script(
-			'architect-ai-code-generator-generator',
+			'pmorix-post-type-taxonomy-rest-generator-generator',
 			'architectAiCodeGenerator',
 			array(
-				'copied' => __( 'Code copied to the clipboard.', 'architect-ai-code-generator' ),
-				'failed' => __( 'Unable to copy automatically. Select the code and copy it manually.', 'architect-ai-code-generator' ),
+				'copied' => __( 'Code copied to the clipboard.', 'pmorix-post-type-taxonomy-rest-generator' ),
+				'failed' => __( 'Unable to copy automatically. Select the code and copy it manually.', 'pmorix-post-type-taxonomy-rest-generator' ),
 			)
 		);
 	}
@@ -102,7 +102,7 @@ final class RestApiGeneratorPage {
 
 				if ( array() === $errors ) {
 					$generated_code  = $this->generator->generate( $configuration );
-					$success_message = __( 'REST API endpoint code generated successfully.', 'architect-ai-code-generator' );
+					$success_message = __( 'REST API endpoint code generated successfully.', 'pmorix-post-type-taxonomy-rest-generator' );
 				}
 			}
 		}
@@ -120,7 +120,7 @@ final class RestApiGeneratorPage {
 		$errors        = $this->validator->validate( $configuration );
 
 		if ( array() !== $errors ) {
-			wp_die( esc_html__( 'The download configuration is invalid.', 'architect-ai-code-generator' ), esc_html__( 'Download failed', 'architect-ai-code-generator' ), array( 'response' => 400 ) );
+			wp_die( esc_html__( 'The download configuration is invalid.', 'pmorix-post-type-taxonomy-rest-generator' ), esc_html__( 'Download failed', 'pmorix-post-type-taxonomy-rest-generator' ), array( 'response' => 400 ) );
 		}
 
 		$this->download->send( $this->generator->filename( $configuration ), $this->generator->generate( $configuration ) );
@@ -136,7 +136,7 @@ final class RestApiGeneratorPage {
 	/** Enforces administrative access. @return void */
 	private function assert_capability(): void {
 		if ( ! current_user_can( self::CAPABILITY ) ) {
-			wp_die( esc_html__( 'You do not have permission to access this page.', 'architect-ai-code-generator' ), esc_html__( 'Access denied', 'architect-ai-code-generator' ), array( 'response' => 403 ) );
+			wp_die( esc_html__( 'You do not have permission to access this page.', 'pmorix-post-type-taxonomy-rest-generator' ), esc_html__( 'Access denied', 'pmorix-post-type-taxonomy-rest-generator' ), array( 'response' => 403 ) );
 		}
 	}
 

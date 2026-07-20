@@ -35,10 +35,10 @@ final class DashboardPage {
 	 */
 	public function register_menu(): void {
 		add_menu_page(
-			esc_html__( 'Architect AI Code Generator', 'architect-ai-code-generator' ),
-			esc_html__( 'Architect AI Code Generator', 'architect-ai-code-generator' ),
+			esc_html__( 'PMorix Post Type, Taxonomy & REST Generator', 'pmorix-post-type-taxonomy-rest-generator' ),
+			esc_html__( 'PMorix Post Type, Taxonomy & REST Generator', 'pmorix-post-type-taxonomy-rest-generator' ),
 			self::CAPABILITY,
-			'architect-ai-code-generator',
+			'pmorix-post-type-taxonomy-rest-generator',
 			array( $this, 'render' ),
 			'dashicons-editor-code',
 			58
@@ -53,19 +53,19 @@ final class DashboardPage {
 	public function render(): void {
 		if ( ! current_user_can( self::CAPABILITY ) ) {
 			wp_die(
-				esc_html__( 'You do not have permission to access this page.', 'architect-ai-code-generator' ),
-				esc_html__( 'Access denied', 'architect-ai-code-generator' ),
+				esc_html__( 'You do not have permission to access this page.', 'pmorix-post-type-taxonomy-rest-generator' ),
+				esc_html__( 'Access denied', 'pmorix-post-type-taxonomy-rest-generator' ),
 				array( 'response' => 403 )
 			);
 		}
 		?>
 		<div class="wrap">
-			<h1><?php echo esc_html__( 'Architect AI Code Generator', 'architect-ai-code-generator' ); ?></h1>
+			<h1><?php echo esc_html__( 'PMorix Post Type, Taxonomy & REST Generator', 'pmorix-post-type-taxonomy-rest-generator' ); ?></h1>
 			<p>
 				<?php
 				echo esc_html__(
 					'Use the CPT, Taxonomy, and REST API Generators to create reviewable WordPress code.',
-					'architect-ai-code-generator'
+					'pmorix-post-type-taxonomy-rest-generator'
 				);
 				?>
 			</p>
