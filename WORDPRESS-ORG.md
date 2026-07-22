@@ -6,7 +6,7 @@ not need Composer after installation.
 
 Before submission:
 
-1. Update `Version` and `WP_ARCHITECT_AI_VERSION` in `pmorix-post-type-taxonomy-rest-generator.php`.
+1. Update `Version` and `PMORIX_PTRG_VERSION` in `pmorix-post-type-taxonomy-rest-generator.php`.
 2. Set the same version in `readme.txt` under `Stable tag` and add its changelog.
 3. Update `Tested up to` after testing with the latest WordPress release.
 4. Run PHP syntax checks, PHPCS, PHPUnit, and WordPress Plugin Check.

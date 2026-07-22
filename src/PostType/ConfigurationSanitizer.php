@@ -2,10 +2,10 @@
 /**
  * Custom post type request sanitization.
  *
- * @package PratapMaity\WPArchitectAI
+ * @package PratapMaity\PMorixPTRG
  */
 
-namespace PratapMaity\WPArchitectAI\PostType;
+namespace PratapMaity\PMorixPTRG\PostType;
 
 defined( 'ABSPATH' ) || exit;
 

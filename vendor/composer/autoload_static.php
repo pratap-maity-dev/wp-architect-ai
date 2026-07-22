@@ -9,12 +9,12 @@ class ComposerStaticInit3c6bf60b09f8a64bb024e2fdb4eb1e4b
     public static $prefixLengthsPsr4 = array (
         'P' =>
         array (
-            'PratapMaity\\WPArchitectAI\\' => 26,
+            'PratapMaity\\PMorixPTRG\\' => 23,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'PratapMaity\\WPArchitectAI\\' =>
+        'PratapMaity\\PMorixPTRG\\' =>
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),
@@ -22,26 +22,6 @@ class ComposerStaticInit3c6bf60b09f8a64bb024e2fdb4eb1e4b
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
-        'PratapMaity\\WPArchitectAI\\Activator' => __DIR__ . '/../..' . '/src/Activator.php',
-        'PratapMaity\\WPArchitectAI\\Admin\\DashboardPage' => __DIR__ . '/../..' . '/src/Admin/DashboardPage.php',
-        'PratapMaity\\WPArchitectAI\\Admin\\GeneratedFileDownload' => __DIR__ . '/../..' . '/src/Admin/GeneratedFileDownload.php',
-        'PratapMaity\\WPArchitectAI\\Admin\\PostTypeGeneratorPage' => __DIR__ . '/../..' . '/src/Admin/PostTypeGeneratorPage.php',
-        'PratapMaity\\WPArchitectAI\\Admin\\RestApiGeneratorPage' => __DIR__ . '/../..' . '/src/Admin/RestApiGeneratorPage.php',
-        'PratapMaity\\WPArchitectAI\\Admin\\TaxonomyGeneratorPage' => __DIR__ . '/../..' . '/src/Admin/TaxonomyGeneratorPage.php',
-        'PratapMaity\\WPArchitectAI\\Deactivator' => __DIR__ . '/../..' . '/src/Deactivator.php',
-        'PratapMaity\\WPArchitectAI\\Plugin' => __DIR__ . '/../..' . '/src/Plugin.php',
-        'PratapMaity\\WPArchitectAI\\PostType\\CodeGenerator' => __DIR__ . '/../..' . '/src/PostType/CodeGenerator.php',
-        'PratapMaity\\WPArchitectAI\\PostType\\Configuration' => __DIR__ . '/../..' . '/src/PostType/Configuration.php',
-        'PratapMaity\\WPArchitectAI\\PostType\\ConfigurationSanitizer' => __DIR__ . '/../..' . '/src/PostType/ConfigurationSanitizer.php',
-        'PratapMaity\\WPArchitectAI\\PostType\\ConfigurationValidator' => __DIR__ . '/../..' . '/src/PostType/ConfigurationValidator.php',
-        'PratapMaity\\WPArchitectAI\\RestApi\\CodeGenerator' => __DIR__ . '/../..' . '/src/RestApi/CodeGenerator.php',
-        'PratapMaity\\WPArchitectAI\\RestApi\\Configuration' => __DIR__ . '/../..' . '/src/RestApi/Configuration.php',
-        'PratapMaity\\WPArchitectAI\\RestApi\\ConfigurationSanitizer' => __DIR__ . '/../..' . '/src/RestApi/ConfigurationSanitizer.php',
-        'PratapMaity\\WPArchitectAI\\RestApi\\ConfigurationValidator' => __DIR__ . '/../..' . '/src/RestApi/ConfigurationValidator.php',
-        'PratapMaity\\WPArchitectAI\\Taxonomy\\CodeGenerator' => __DIR__ . '/../..' . '/src/Taxonomy/CodeGenerator.php',
-        'PratapMaity\\WPArchitectAI\\Taxonomy\\Configuration' => __DIR__ . '/../..' . '/src/Taxonomy/Configuration.php',
-        'PratapMaity\\WPArchitectAI\\Taxonomy\\ConfigurationSanitizer' => __DIR__ . '/../..' . '/src/Taxonomy/ConfigurationSanitizer.php',
-        'PratapMaity\\WPArchitectAI\\Taxonomy\\ConfigurationValidator' => __DIR__ . '/../..' . '/src/Taxonomy/ConfigurationValidator.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

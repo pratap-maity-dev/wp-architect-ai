@@ -2,14 +2,14 @@
 /**
  * REST endpoint code generator tests.
  *
- * @package PratapMaity\WPArchitectAI
+ * @package PratapMaity\PMorixPTRG
  */
 
-namespace PratapMaity\WPArchitectAI\Tests\Unit;
+namespace PratapMaity\PMorixPTRG\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use PratapMaity\WPArchitectAI\RestApi\CodeGenerator;
-use PratapMaity\WPArchitectAI\Tests\RestConfigurationFactory;
+use PratapMaity\PMorixPTRG\RestApi\CodeGenerator;
+use PratapMaity\PMorixPTRG\Tests\RestConfigurationFactory;
 
 /**
  * Tests secure REST controller generation.

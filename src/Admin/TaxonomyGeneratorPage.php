@@ -2,17 +2,17 @@
 /**
  * Taxonomy generator admin page.
  *
- * @package PratapMaity\WPArchitectAI
+ * @package PratapMaity\PMorixPTRG
  */
 
-namespace PratapMaity\WPArchitectAI\Admin;
+namespace PratapMaity\PMorixPTRG\Admin;
 
 defined( 'ABSPATH' ) || exit;
 
-use PratapMaity\WPArchitectAI\Taxonomy\CodeGenerator;
-use PratapMaity\WPArchitectAI\Taxonomy\Configuration;
-use PratapMaity\WPArchitectAI\Taxonomy\ConfigurationSanitizer;
-use PratapMaity\WPArchitectAI\Taxonomy\ConfigurationValidator;
+use PratapMaity\PMorixPTRG\Taxonomy\CodeGenerator;
+use PratapMaity\PMorixPTRG\Taxonomy\Configuration;
+use PratapMaity\PMorixPTRG\Taxonomy\ConfigurationSanitizer;
+use PratapMaity\PMorixPTRG\Taxonomy\ConfigurationValidator;
 
 /**
  * Handles the taxonomy generator interface and download.
@@ -20,9 +20,10 @@ use PratapMaity\WPArchitectAI\Taxonomy\ConfigurationValidator;
 final class TaxonomyGeneratorPage {
 
 	private const CAPABILITY      = 'manage_options';
-	private const MENU_SLUG       = 'pmorix-post-type-taxonomy-rest-generator-taxonomy-generator';
-	private const GENERATE_ACTION = 'wp_architect_ai_generate_taxonomy';
-	private const DOWNLOAD_ACTION = 'wp_architect_ai_download_taxonomy';
+	private const MENU_SLUG       = 'pmorix_ptrg_taxonomy_generator';
+	private const NONCE_FIELD     = 'pmorix_ptrg_taxonomy_nonce';
+	private const GENERATE_ACTION = 'pmorix_ptrg_generate_taxonomy';
+	private const DOWNLOAD_ACTION = 'pmorix_ptrg_download_taxonomy';
 
 	/**
 	 * Constructor.
@@ -58,7 +59,7 @@ final class TaxonomyGeneratorPage {
 	 */
 	public function register_menu(): void {
 		add_submenu_page(
-			'pmorix-post-type-taxonomy-rest-generator',
+			'pmorix_ptrg_dashboard',
 			esc_html__( 'Taxonomy Generator', 'pmorix-post-type-taxonomy-rest-generator' ),
 			esc_html__( 'Taxonomy Generator', 'pmorix-post-type-taxonomy-rest-generator' ),
 			self::CAPABILITY,
@@ -74,20 +75,20 @@ final class TaxonomyGeneratorPage {
 	 * @return void
 	 */
 	public function enqueue_assets( string $hook_suffix ): void {
-		if ( 'pmorix-post-type-taxonomy-rest-generator_page_' . self::MENU_SLUG !== $hook_suffix ) {
+		if ( 'pmorix_ptrg_dashboard_page_' . self::MENU_SLUG !== $hook_suffix ) {
 			return;
 		}
 
 		wp_enqueue_script(
-			'pmorix-post-type-taxonomy-rest-generator-generator',
-			plugins_url( 'assets/js/generator.js', WP_ARCHITECT_AI_FILE ),
+			'pmorix_ptrg_generator',
+			plugins_url( 'assets/js/generator.js', PMORIX_PTRG_FILE ),
 			array(),
-			WP_ARCHITECT_AI_VERSION,
+			PMORIX_PTRG_VERSION,
 			true
 		);
 		wp_localize_script(
-			'pmorix-post-type-taxonomy-rest-generator-generator',
-			'architectAiCodeGenerator',
+			'pmorix_ptrg_generator',
+			'pmorixPtrgGenerator',
 			array(
 				'copied' => __( 'Code copied to the clipboard.', 'pmorix-post-type-taxonomy-rest-generator' ),
 				'failed' => __( 'Unable to copy automatically. Select the code and copy it manually.', 'pmorix-post-type-taxonomy-rest-generator' ),
@@ -109,9 +110,9 @@ final class TaxonomyGeneratorPage {
 		$success_message = '';
 
 		if ( $this->is_post_request() ) {
-			check_admin_referer( self::GENERATE_ACTION );
-			$request_action = isset( $_POST['wp_architect_ai_action'] ) && is_scalar( $_POST['wp_architect_ai_action'] )
-				? sanitize_key( wp_unslash( $_POST['wp_architect_ai_action'] ) )
+			check_admin_referer( self::GENERATE_ACTION, self::NONCE_FIELD );
+			$request_action = isset( $_POST['pmorix_ptrg_action'] ) && is_scalar( $_POST['pmorix_ptrg_action'] )
+				? sanitize_key( wp_unslash( $_POST['pmorix_ptrg_action'] ) )
 				: '';
 
 			if ( self::GENERATE_ACTION === $request_action ) {
@@ -136,7 +137,7 @@ final class TaxonomyGeneratorPage {
 	 */
 	public function download(): never {
 		$this->assert_capability();
-		check_admin_referer( self::DOWNLOAD_ACTION );
+		check_admin_referer( self::DOWNLOAD_ACTION, self::NONCE_FIELD );
 
 		$configuration = $this->sanitizer->sanitize( $_POST ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitized immediately by the dedicated sanitizer.
 		$errors        = $this->validator->validate( $configuration );

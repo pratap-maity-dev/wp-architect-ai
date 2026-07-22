@@ -2,10 +2,10 @@
 /**
  * Generated file response handling.
  *
- * @package PratapMaity\WPArchitectAI
+ * @package PratapMaity\PMorixPTRG
  */
 
-namespace PratapMaity\WPArchitectAI\Admin;
+namespace PratapMaity\PMorixPTRG\Admin;
 
 defined( 'ABSPATH' ) || exit;
 

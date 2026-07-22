@@ -2,12 +2,12 @@
 /**
  * REST configuration test factory.
  *
- * @package PratapMaity\WPArchitectAI
+ * @package PratapMaity\PMorixPTRG
  */
 
-namespace PratapMaity\WPArchitectAI\Tests;
+namespace PratapMaity\PMorixPTRG\Tests;
 
-use PratapMaity\WPArchitectAI\RestApi\Configuration;
+use PratapMaity\PMorixPTRG\RestApi\Configuration;
 
 /**
  * Creates valid REST configuration fixtures.

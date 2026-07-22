@@ -2,14 +2,14 @@
 /**
  * Code generator tests.
  *
- * @package PratapMaity\WPArchitectAI
+ * @package PratapMaity\PMorixPTRG
  */
 
-namespace PratapMaity\WPArchitectAI\Tests\Unit;
+namespace PratapMaity\PMorixPTRG\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use PratapMaity\WPArchitectAI\PostType\CodeGenerator;
-use PratapMaity\WPArchitectAI\PostType\Configuration;
+use PratapMaity\PMorixPTRG\PostType\CodeGenerator;
+use PratapMaity\PMorixPTRG\PostType\Configuration;
 
 /**
  * Tests deterministic PHP code generation.
@@ -26,7 +26,7 @@ final class CodeGeneratorTest extends TestCase {
 
 		self::assertStringStartsWith( '<?php', $code );
 		self::assertStringContainsString( "if ( ! defined( 'ABSPATH' ) )", $code );
-		self::assertStringContainsString( "add_action( 'init', 'wp_architect_ai_register_book_review_", $code );
+		self::assertStringContainsString( "add_action( 'init', 'pmorix_ptrg_register_book_review_", $code );
 		self::assertStringContainsString( "register_post_type( 'book_review', \$args );", $code );
 		self::assertStringContainsString( "'show_in_rest'        => true", $code );
 		self::assertStringContainsString( "'publicly_queryable'   => true", $code );

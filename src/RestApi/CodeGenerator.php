@@ -2,10 +2,10 @@
 /**
  * REST API endpoint PHP generation.
  *
- * @package PratapMaity\WPArchitectAI
+ * @package PratapMaity\PMorixPTRG
  */
 
-namespace PratapMaity\WPArchitectAI\RestApi;
+namespace PratapMaity\PMorixPTRG\RestApi;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -419,7 +419,7 @@ final class CodeGenerator {
 		}
 		if ( 'public' === $configuration->authentication && 0 < (int) $configuration->cache_duration ) {
 			$lines[] = '\t\t// Invalidate this transient when relevant posts or terms change.';
-			$lines[] = "\t\t\$cache_key = 'wp_architect_ai_rest_' . md5( self::NAMESPACE . self::ROUTE . wp_json_encode( \$request->get_params() ) );";
+			$lines[] = "\t\t\$cache_key = 'pmorix_ptrg_rest_' . md5( self::NAMESPACE . self::ROUTE . wp_json_encode( \$request->get_params() ) );";
 			$lines[] = "\t\t\$cached = get_transient( \$cache_key );";
 			$lines[] = "\t\tif ( false !== \$cached ) { return new \\WP_REST_Response( \$cached, 200 ); }";
 		}

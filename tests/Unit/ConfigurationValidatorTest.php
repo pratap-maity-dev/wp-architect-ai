@@ -2,14 +2,14 @@
 /**
  * Configuration validator tests.
  *
- * @package PratapMaity\WPArchitectAI
+ * @package PratapMaity\PMorixPTRG
  */
 
-namespace PratapMaity\WPArchitectAI\Tests\Unit;
+namespace PratapMaity\PMorixPTRG\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use PratapMaity\WPArchitectAI\PostType\Configuration;
-use PratapMaity\WPArchitectAI\PostType\ConfigurationValidator;
+use PratapMaity\PMorixPTRG\PostType\Configuration;
+use PratapMaity\PMorixPTRG\PostType\ConfigurationValidator;
 
 /**
  * Tests custom post type validation.

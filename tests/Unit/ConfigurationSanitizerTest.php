@@ -2,13 +2,13 @@
 /**
  * Configuration sanitizer tests.
  *
- * @package PratapMaity\WPArchitectAI
+ * @package PratapMaity\PMorixPTRG
  */
 
-namespace PratapMaity\WPArchitectAI\Tests\Unit;
+namespace PratapMaity\PMorixPTRG\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use PratapMaity\WPArchitectAI\PostType\ConfigurationSanitizer;
+use PratapMaity\PMorixPTRG\PostType\ConfigurationSanitizer;
 
 /**
  * Tests submitted configuration sanitization.

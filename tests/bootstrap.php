@@ -2,7 +2,7 @@
 /**
  * PHPUnit bootstrap.
  *
- * @package PratapMaity\WPArchitectAI
+ * @package PratapMaity\PMorixPTRG
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

@@ -2,10 +2,10 @@
 /**
  * REST admin controller security tests.
  *
- * @package PratapMaity\WPArchitectAI
+ * @package PratapMaity\PMorixPTRG
  */
 
-namespace PratapMaity\WPArchitectAI\Tests\Unit;
+namespace PratapMaity\PMorixPTRG\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 
@@ -20,7 +20,7 @@ final class RestAdminSecurityTest extends TestCase {
 		$source = file_get_contents( dirname( __DIR__, 2 ) . '/src/Admin/RestApiGeneratorPage.php' );
 
 		self::assertIsString( $source );
-		self::assertStringContainsString( 'check_admin_referer( self::DOWNLOAD_ACTION )', $source );
+		self::assertStringContainsString( 'check_admin_referer( self::DOWNLOAD_ACTION, self::NONCE_FIELD )', $source );
 		self::assertStringContainsString( 'current_user_can( self::CAPABILITY )', $source );
 		self::assertStringContainsString( '$this->assert_capability();', $source );
 	}
