@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-4": {
-            "PratapMaity\\WPArchitectAI\\": "src/"
+            "PratapMaity\\PMorixPTRG\\": "src/"
         }
     },
     "config": {

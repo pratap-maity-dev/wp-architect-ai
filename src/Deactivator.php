@@ -2,10 +2,10 @@
 /**
  * Plugin deactivation handling.
  *
- * @package PratapMaity\WPArchitectAI
+ * @package PratapMaity\PMorixPTRG
  */
 
-namespace PratapMaity\WPArchitectAI;
+namespace PratapMaity\PMorixPTRG;
 
 defined( 'ABSPATH' ) || exit;
 

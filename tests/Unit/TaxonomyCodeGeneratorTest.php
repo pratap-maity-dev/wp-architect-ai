@@ -2,14 +2,14 @@
 /**
  * Taxonomy code generator tests.
  *
- * @package PratapMaity\WPArchitectAI
+ * @package PratapMaity\PMorixPTRG
  */
 
-namespace PratapMaity\WPArchitectAI\Tests\Unit;
+namespace PratapMaity\PMorixPTRG\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use PratapMaity\WPArchitectAI\Taxonomy\CodeGenerator;
-use PratapMaity\WPArchitectAI\Taxonomy\Configuration;
+use PratapMaity\PMorixPTRG\Taxonomy\CodeGenerator;
+use PratapMaity\PMorixPTRG\Taxonomy\Configuration;
 
 /**
  * Tests deterministic taxonomy PHP generation.
@@ -26,7 +26,7 @@ final class TaxonomyCodeGeneratorTest extends TestCase {
 
 		self::assertStringStartsWith( '<?php', $code );
 		self::assertStringContainsString( "if ( ! defined( 'ABSPATH' ) )", $code );
-		self::assertStringContainsString( "add_action( 'init', 'wp_architect_ai_register_book_genre_", $code );
+		self::assertStringContainsString( "add_action( 'init', 'pmorix_ptrg_register_book_genre_", $code );
 		self::assertStringContainsString( "register_taxonomy( 'book_genre', array( 'post', 'portfolio' ), \$args );", $code );
 		self::assertStringContainsString( "'show_in_rest'       => true", $code );
 		self::assertStringContainsString( "'hierarchical'       => true", $code );

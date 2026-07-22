@@ -2,13 +2,13 @@
 /**
  * REST configuration sanitizer tests.
  *
- * @package PratapMaity\WPArchitectAI
+ * @package PratapMaity\PMorixPTRG
  */
 
-namespace PratapMaity\WPArchitectAI\Tests\Unit;
+namespace PratapMaity\PMorixPTRG\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use PratapMaity\WPArchitectAI\RestApi\ConfigurationSanitizer;
+use PratapMaity\PMorixPTRG\RestApi\ConfigurationSanitizer;
 
 /**
  * Tests REST form sanitization.

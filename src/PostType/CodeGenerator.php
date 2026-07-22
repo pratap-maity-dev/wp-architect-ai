@@ -2,10 +2,10 @@
 /**
  * Custom post type PHP generation.
  *
- * @package PratapMaity\WPArchitectAI
+ * @package PratapMaity\PMorixPTRG
  */
 
-namespace PratapMaity\WPArchitectAI\PostType;
+namespace PratapMaity\PMorixPTRG\PostType;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -22,7 +22,7 @@ final class CodeGenerator {
 	 */
 	public function generate( Configuration $configuration ): string {
 		$key_hash      = substr( hash( 'sha256', $configuration->post_type_key ), 0, 8 );
-		$function_name = 'wp_architect_ai_register_' . str_replace( '-', '_', $configuration->post_type_key ) . '_' . $key_hash . '_post_type';
+		$function_name = 'pmorix_ptrg_register_' . str_replace( '-', '_', $configuration->post_type_key ) . '_' . $key_hash . '_post_type';
 		$supports      = implode( ', ', array_map( array( $this, 'export' ), $configuration->supports ) );
 		$rewrite       = '' === $configuration->rewrite_slug
 			? 'false'

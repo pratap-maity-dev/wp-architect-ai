@@ -2,27 +2,27 @@
 /**
  * Main plugin orchestration.
  *
- * @package PratapMaity\WPArchitectAI
+ * @package PratapMaity\PMorixPTRG
  */
 
-namespace PratapMaity\WPArchitectAI;
+namespace PratapMaity\PMorixPTRG;
 
 defined( 'ABSPATH' ) || exit;
 
-use PratapMaity\WPArchitectAI\Admin\DashboardPage;
-use PratapMaity\WPArchitectAI\Admin\GeneratedFileDownload;
-use PratapMaity\WPArchitectAI\Admin\PostTypeGeneratorPage;
-use PratapMaity\WPArchitectAI\Admin\RestApiGeneratorPage;
-use PratapMaity\WPArchitectAI\Admin\TaxonomyGeneratorPage;
-use PratapMaity\WPArchitectAI\PostType\CodeGenerator as PostTypeCodeGenerator;
-use PratapMaity\WPArchitectAI\PostType\ConfigurationSanitizer as PostTypeConfigurationSanitizer;
-use PratapMaity\WPArchitectAI\PostType\ConfigurationValidator as PostTypeConfigurationValidator;
-use PratapMaity\WPArchitectAI\RestApi\CodeGenerator as RestApiCodeGenerator;
-use PratapMaity\WPArchitectAI\RestApi\ConfigurationSanitizer as RestApiConfigurationSanitizer;
-use PratapMaity\WPArchitectAI\RestApi\ConfigurationValidator as RestApiConfigurationValidator;
-use PratapMaity\WPArchitectAI\Taxonomy\CodeGenerator as TaxonomyCodeGenerator;
-use PratapMaity\WPArchitectAI\Taxonomy\ConfigurationSanitizer as TaxonomyConfigurationSanitizer;
-use PratapMaity\WPArchitectAI\Taxonomy\ConfigurationValidator as TaxonomyConfigurationValidator;
+use PratapMaity\PMorixPTRG\Admin\DashboardPage;
+use PratapMaity\PMorixPTRG\Admin\GeneratedFileDownload;
+use PratapMaity\PMorixPTRG\Admin\PostTypeGeneratorPage;
+use PratapMaity\PMorixPTRG\Admin\RestApiGeneratorPage;
+use PratapMaity\PMorixPTRG\Admin\TaxonomyGeneratorPage;
+use PratapMaity\PMorixPTRG\PostType\CodeGenerator as PostTypeCodeGenerator;
+use PratapMaity\PMorixPTRG\PostType\ConfigurationSanitizer as PostTypeConfigurationSanitizer;
+use PratapMaity\PMorixPTRG\PostType\ConfigurationValidator as PostTypeConfigurationValidator;
+use PratapMaity\PMorixPTRG\RestApi\CodeGenerator as RestApiCodeGenerator;
+use PratapMaity\PMorixPTRG\RestApi\ConfigurationSanitizer as RestApiConfigurationSanitizer;
+use PratapMaity\PMorixPTRG\RestApi\ConfigurationValidator as RestApiConfigurationValidator;
+use PratapMaity\PMorixPTRG\Taxonomy\CodeGenerator as TaxonomyCodeGenerator;
+use PratapMaity\PMorixPTRG\Taxonomy\ConfigurationSanitizer as TaxonomyConfigurationSanitizer;
+use PratapMaity\PMorixPTRG\Taxonomy\ConfigurationValidator as TaxonomyConfigurationValidator;
 
 /**
  * Registers the plugin's runtime hooks.

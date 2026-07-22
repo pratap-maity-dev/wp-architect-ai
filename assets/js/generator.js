@@ -1,7 +1,7 @@
 ( function () {
 	'use strict';
 
-	const button = document.querySelector( '[data-pmorix-post-type-taxonomy-rest-generator-copy]' );
+	const button = document.querySelector( '[data-pmorix-ptrg-copy]' );
 
 	if ( ! button ) {
 		return;
@@ -22,11 +22,11 @@
 
 		try {
 			await navigator.clipboard.writeText( preview.value );
-			status.textContent = architectAiCodeGenerator.copied;
+			status.textContent = pmorixPtrgGenerator.copied;
 		} catch ( error ) {
 			preview.focus();
 			preview.select();
-			status.textContent = architectAiCodeGenerator.failed;
+			status.textContent = pmorixPtrgGenerator.failed;
 		}
 	} );
 }() );

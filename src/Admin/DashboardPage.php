@@ -2,10 +2,10 @@
 /**
  * Admin dashboard page.
  *
- * @package PratapMaity\WPArchitectAI
+ * @package PratapMaity\PMorixPTRG
  */
 
-namespace PratapMaity\WPArchitectAI\Admin;
+namespace PratapMaity\PMorixPTRG\Admin;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -38,7 +38,7 @@ final class DashboardPage {
 			esc_html__( 'PMorix Post Type, Taxonomy & REST Generator', 'pmorix-post-type-taxonomy-rest-generator' ),
 			esc_html__( 'PMorix Post Type, Taxonomy & REST Generator', 'pmorix-post-type-taxonomy-rest-generator' ),
 			self::CAPABILITY,
-			'pmorix-post-type-taxonomy-rest-generator',
+			'pmorix_ptrg_dashboard',
 			array( $this, 'render' ),
 			'dashicons-editor-code',
 			58

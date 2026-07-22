@@ -6,5 +6,5 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'PratapMaity\\WPArchitectAI\\' => array($baseDir . '/src'),
+    'PratapMaity\\PMorixPTRG\\' => array($baseDir . '/src'),
 );

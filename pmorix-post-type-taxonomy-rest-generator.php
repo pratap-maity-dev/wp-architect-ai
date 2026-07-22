@@ -12,17 +12,17 @@
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       pmorix-post-type-taxonomy-rest-generator
  *
- * @package PratapMaity\WPArchitectAI
+ * @package PratapMaity\PMorixPTRG
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'WP_ARCHITECT_AI_VERSION', '0.5.0' );
-define( 'WP_ARCHITECT_AI_FILE', __FILE__ );
-define( 'WP_ARCHITECT_AI_MINIMUM_PHP_VERSION', '8.1' );
-define( 'WP_ARCHITECT_AI_MINIMUM_WORDPRESS_VERSION', '6.5' );
+define( 'PMORIX_PTRG_VERSION', '0.5.0' );
+define( 'PMORIX_PTRG_FILE', __FILE__ );
+define( 'PMORIX_PTRG_MINIMUM_PHP_VERSION', '8.1' );
+define( 'PMORIX_PTRG_MINIMUM_WORDPRESS_VERSION', '6.5' );
 
 /**
  * Displays an admin notice when the plugin cannot start.
@@ -30,7 +30,7 @@ define( 'WP_ARCHITECT_AI_MINIMUM_WORDPRESS_VERSION', '6.5' );
  * @param string $message Notice message.
  * @return void
  */
-function architect_ai_code_generator_render_requirement_notice( string $message ): void {
+function pmorix_ptrg_render_requirement_notice( string $message ): void {
 	?>
 	<div class="notice notice-error">
 		<p><?php echo esc_html( $message ); ?></p>
@@ -38,15 +38,15 @@ function architect_ai_code_generator_render_requirement_notice( string $message 
 	<?php
 }
 
-if ( version_compare( PHP_VERSION, WP_ARCHITECT_AI_MINIMUM_PHP_VERSION, '<' ) ) {
+if ( version_compare( PHP_VERSION, PMORIX_PTRG_MINIMUM_PHP_VERSION, '<' ) ) {
 	add_action(
 		'admin_notices',
 		static function (): void {
-			architect_ai_code_generator_render_requirement_notice(
+			pmorix_ptrg_render_requirement_notice(
 				sprintf(
 					/* translators: %s: Minimum required PHP version. */
 					__( 'PMorix Post Type, Taxonomy & REST Generator requires PHP %s or later.', 'pmorix-post-type-taxonomy-rest-generator' ),
-					WP_ARCHITECT_AI_MINIMUM_PHP_VERSION
+					PMORIX_PTRG_MINIMUM_PHP_VERSION
 				)
 			);
 		}
@@ -56,15 +56,15 @@ if ( version_compare( PHP_VERSION, WP_ARCHITECT_AI_MINIMUM_PHP_VERSION, '<' ) ) 
 
 global $wp_version;
 
-if ( version_compare( (string) $wp_version, WP_ARCHITECT_AI_MINIMUM_WORDPRESS_VERSION, '<' ) ) {
+if ( version_compare( (string) $wp_version, PMORIX_PTRG_MINIMUM_WORDPRESS_VERSION, '<' ) ) {
 	add_action(
 		'admin_notices',
 		static function (): void {
-			architect_ai_code_generator_render_requirement_notice(
+			pmorix_ptrg_render_requirement_notice(
 				sprintf(
 					/* translators: %s: Minimum required WordPress version. */
 					__( 'PMorix Post Type, Taxonomy & REST Generator requires WordPress %s or later.', 'pmorix-post-type-taxonomy-rest-generator' ),
-					WP_ARCHITECT_AI_MINIMUM_WORDPRESS_VERSION
+					PMORIX_PTRG_MINIMUM_WORDPRESS_VERSION
 				)
 			);
 		}
@@ -72,13 +72,13 @@ if ( version_compare( (string) $wp_version, WP_ARCHITECT_AI_MINIMUM_WORDPRESS_VE
 	return;
 }
 
-$architect_ai_code_generator_autoloader = __DIR__ . '/vendor/autoload.php';
+$pmorix_ptrg_autoloader = __DIR__ . '/vendor/autoload.php';
 
-if ( ! is_readable( $architect_ai_code_generator_autoloader ) ) {
+if ( ! is_readable( $pmorix_ptrg_autoloader ) ) {
 	add_action(
 		'admin_notices',
 		static function (): void {
-			architect_ai_code_generator_render_requirement_notice(
+			pmorix_ptrg_render_requirement_notice(
 				__( 'PMorix Post Type, Taxonomy & REST Generator could not start because its Composer dependencies are missing.', 'pmorix-post-type-taxonomy-rest-generator' )
 			);
 		}
@@ -86,9 +86,9 @@ if ( ! is_readable( $architect_ai_code_generator_autoloader ) ) {
 	return;
 }
 
-require_once $architect_ai_code_generator_autoloader;
+require_once $pmorix_ptrg_autoloader;
 
-register_activation_hook( __FILE__, array( PratapMaity\WPArchitectAI\Activator::class, 'activate' ) );
-register_deactivation_hook( __FILE__, array( PratapMaity\WPArchitectAI\Deactivator::class, 'deactivate' ) );
+register_activation_hook( __FILE__, array( PratapMaity\PMorixPTRG\Activator::class, 'activate' ) );
+register_deactivation_hook( __FILE__, array( PratapMaity\PMorixPTRG\Deactivator::class, 'deactivate' ) );
 
-PratapMaity\WPArchitectAI\Plugin::create()->run();
+PratapMaity\PMorixPTRG\Plugin::create()->run();

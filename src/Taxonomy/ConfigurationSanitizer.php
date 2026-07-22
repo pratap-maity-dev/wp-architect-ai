@@ -2,10 +2,10 @@
 /**
  * Taxonomy request sanitization.
  *
- * @package PratapMaity\WPArchitectAI
+ * @package PratapMaity\PMorixPTRG
  */
 
-namespace PratapMaity\WPArchitectAI\Taxonomy;
+namespace PratapMaity\PMorixPTRG\Taxonomy;
 
 defined( 'ABSPATH' ) || exit;
 

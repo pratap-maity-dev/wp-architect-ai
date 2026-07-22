@@ -2,10 +2,10 @@
 /**
  * Taxonomy PHP generation.
  *
- * @package PratapMaity\WPArchitectAI
+ * @package PratapMaity\PMorixPTRG
  */
 
-namespace PratapMaity\WPArchitectAI\Taxonomy;
+namespace PratapMaity\PMorixPTRG\Taxonomy;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -22,7 +22,7 @@ final class CodeGenerator {
 	 */
 	public function generate( Configuration $configuration ): string {
 		$key_hash      = substr( hash( 'sha256', $configuration->taxonomy_key ), 0, 8 );
-		$function_name = 'wp_architect_ai_register_' . str_replace( '-', '_', $configuration->taxonomy_key ) . '_' . $key_hash . '_taxonomy';
+		$function_name = 'pmorix_ptrg_register_' . str_replace( '-', '_', $configuration->taxonomy_key ) . '_' . $key_hash . '_taxonomy';
 		$post_types    = implode( ', ', array_map( array( $this, 'export' ), $configuration->post_types ) );
 		$rewrite       = '' === $configuration->rewrite_slug
 			? 'false'

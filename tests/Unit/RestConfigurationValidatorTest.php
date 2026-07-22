@@ -2,14 +2,14 @@
 /**
  * REST configuration validator tests.
  *
- * @package PratapMaity\WPArchitectAI
+ * @package PratapMaity\PMorixPTRG
  */
 
-namespace PratapMaity\WPArchitectAI\Tests\Unit;
+namespace PratapMaity\PMorixPTRG\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use PratapMaity\WPArchitectAI\RestApi\ConfigurationValidator;
-use PratapMaity\WPArchitectAI\Tests\RestConfigurationFactory;
+use PratapMaity\PMorixPTRG\RestApi\ConfigurationValidator;
+use PratapMaity\PMorixPTRG\Tests\RestConfigurationFactory;
 
 /**
  * Tests REST endpoint configuration policy.

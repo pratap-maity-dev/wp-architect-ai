@@ -2,10 +2,10 @@
 /**
  * REST API request sanitization.
  *
- * @package PratapMaity\WPArchitectAI
+ * @package PratapMaity\PMorixPTRG
  */
 
-namespace PratapMaity\WPArchitectAI\RestApi;
+namespace PratapMaity\PMorixPTRG\RestApi;
 
 defined( 'ABSPATH' ) || exit;
 

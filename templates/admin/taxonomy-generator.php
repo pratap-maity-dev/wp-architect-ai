@@ -2,19 +2,19 @@
 /**
  * Taxonomy generator form and preview.
  *
- * @var PratapMaity\WPArchitectAI\Taxonomy\Configuration $configuration Sanitized form configuration.
+ * @var PratapMaity\PMorixPTRG\Taxonomy\Configuration $configuration Sanitized form configuration.
  * @var array<string>                                      $errors Validation errors.
  * @var string                                             $generated_code Generated PHP preview.
  * @var string                                             $success_message Success notice message.
  *
- * @package PratapMaity\WPArchitectAI
+ * @package PratapMaity\PMorixPTRG
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$architect_ai_code_generator_boolean_fields    = array(
+$pmorix_ptrg_boolean_fields    = array(
 	'public'               => __( 'Public', 'pmorix-post-type-taxonomy-rest-generator' ),
 	'publicly_queryable'   => __( 'Publicly queryable', 'pmorix-post-type-taxonomy-rest-generator' ),
 	'show_ui'              => __( 'Show UI', 'pmorix-post-type-taxonomy-rest-generator' ),
@@ -26,7 +26,7 @@ $architect_ai_code_generator_boolean_fields    = array(
 	'rewrite_hierarchical' => __( 'Rewrite hierarchical', 'pmorix-post-type-taxonomy-rest-generator' ),
 	'query_var'            => __( 'Query variable', 'pmorix-post-type-taxonomy-rest-generator' ),
 );
-$architect_ai_code_generator_common_post_types = array(
+$pmorix_ptrg_common_post_types = array(
 	'post'      => __( 'Posts', 'pmorix-post-type-taxonomy-rest-generator' ),
 	'page'      => __( 'Pages', 'pmorix-post-type-taxonomy-rest-generator' ),
 	'product'   => __( 'Products', 'pmorix-post-type-taxonomy-rest-generator' ),
@@ -46,16 +46,16 @@ $architect_ai_code_generator_common_post_types = array(
 		<div class="notice notice-error" role="alert">
 			<p><strong><?php echo esc_html__( 'Please correct the following errors:', 'pmorix-post-type-taxonomy-rest-generator' ); ?></strong></p>
 			<ul>
-				<?php foreach ( $errors as $architect_ai_code_generator_error ) : ?>
-					<li><?php echo esc_html( $architect_ai_code_generator_error ); ?></li>
+				<?php foreach ( $errors as $pmorix_ptrg_error ) : ?>
+					<li><?php echo esc_html( $pmorix_ptrg_error ); ?></li>
 				<?php endforeach; ?>
 			</ul>
 		</div>
 	<?php endif; ?>
 
 	<form method="post">
-		<?php wp_nonce_field( 'wp_architect_ai_generate_taxonomy' ); ?>
-		<input type="hidden" name="wp_architect_ai_action" value="wp_architect_ai_generate_taxonomy">
+		<?php wp_nonce_field( 'pmorix_ptrg_generate_taxonomy', 'pmorix_ptrg_taxonomy_nonce' ); ?>
+		<input type="hidden" name="pmorix_ptrg_action" value="pmorix_ptrg_generate_taxonomy">
 		<table class="form-table" role="presentation">
 			<tr>
 				<th scope="row"><label for="taxonomy_key"><?php echo esc_html__( 'Taxonomy key', 'pmorix-post-type-taxonomy-rest-generator' ); ?></label></th>
@@ -74,8 +74,8 @@ $architect_ai_code_generator_common_post_types = array(
 				<td>
 					<fieldset>
 						<legend class="screen-reader-text"><?php echo esc_html__( 'Common associated post types', 'pmorix-post-type-taxonomy-rest-generator' ); ?></legend>
-						<?php foreach ( $architect_ai_code_generator_common_post_types as $architect_ai_code_generator_post_type => $architect_ai_code_generator_post_type_label ) : ?>
-							<label><input name="post_types[]" type="checkbox" value="<?php echo esc_attr( $architect_ai_code_generator_post_type ); ?>" <?php checked( in_array( $architect_ai_code_generator_post_type, $configuration->post_types, true ) ); ?>> <?php echo esc_html( $architect_ai_code_generator_post_type_label ); ?></label><br>
+						<?php foreach ( $pmorix_ptrg_common_post_types as $pmorix_ptrg_post_type => $pmorix_ptrg_post_type_label ) : ?>
+							<label><input name="post_types[]" type="checkbox" value="<?php echo esc_attr( $pmorix_ptrg_post_type ); ?>" <?php checked( in_array( $pmorix_ptrg_post_type, $configuration->post_types, true ) ); ?>> <?php echo esc_html( $pmorix_ptrg_post_type_label ); ?></label><br>
 						<?php endforeach; ?>
 					</fieldset>
 					<label for="custom_post_types"><strong><?php echo esc_html__( 'Custom post type keys', 'pmorix-post-type-taxonomy-rest-generator' ); ?></strong></label><br>
@@ -87,10 +87,10 @@ $architect_ai_code_generator_common_post_types = array(
 				<th scope="row"><label for="description"><?php echo esc_html__( 'Description', 'pmorix-post-type-taxonomy-rest-generator' ); ?></label></th>
 				<td><textarea class="large-text" id="description" name="description" rows="4"><?php echo esc_textarea( $configuration->description ); ?></textarea></td>
 			</tr>
-			<?php foreach ( $architect_ai_code_generator_boolean_fields as $architect_ai_code_generator_field => $architect_ai_code_generator_label ) : ?>
+			<?php foreach ( $pmorix_ptrg_boolean_fields as $pmorix_ptrg_field => $pmorix_ptrg_label ) : ?>
 				<tr>
-					<th scope="row"><?php echo esc_html( $architect_ai_code_generator_label ); ?></th>
-					<td><label><input name="<?php echo esc_attr( $architect_ai_code_generator_field ); ?>" type="checkbox" value="1" <?php checked( $configuration->{$architect_ai_code_generator_field} ); ?>> <?php echo esc_html__( 'Enabled', 'pmorix-post-type-taxonomy-rest-generator' ); ?></label></td>
+					<th scope="row"><?php echo esc_html( $pmorix_ptrg_label ); ?></th>
+					<td><label><input name="<?php echo esc_attr( $pmorix_ptrg_field ); ?>" type="checkbox" value="1" <?php checked( $configuration->{$pmorix_ptrg_field} ); ?>> <?php echo esc_html__( 'Enabled', 'pmorix-post-type-taxonomy-rest-generator' ); ?></label></td>
 				</tr>
 			<?php endforeach; ?>
 			<tr>
@@ -99,28 +99,28 @@ $architect_ai_code_generator_common_post_types = array(
 			</tr>
 		</table>
 		<?php submit_button( __( 'Generate PHP', 'pmorix-post-type-taxonomy-rest-generator' ), 'primary', 'submit', false ); ?>
-		<a class="button" href="<?php echo esc_url( admin_url( 'admin.php?page=pmorix-post-type-taxonomy-rest-generator-taxonomy-generator' ) ); ?>"><?php echo esc_html__( 'Reset form', 'pmorix-post-type-taxonomy-rest-generator' ); ?></a>
+		<a class="button" href="<?php echo esc_url( admin_url( 'admin.php?page=pmorix_ptrg_taxonomy_generator' ) ); ?>"><?php echo esc_html__( 'Reset form', 'pmorix-post-type-taxonomy-rest-generator' ); ?></a>
 	</form>
 
 	<?php if ( '' !== $generated_code ) : ?>
 		<h2><?php echo esc_html__( 'Generated code preview', 'pmorix-post-type-taxonomy-rest-generator' ); ?></h2>
 		<textarea id="pmorix-post-type-taxonomy-rest-generator-generated-taxonomy-code" class="large-text code" rows="30" readonly aria-label="<?php echo esc_attr__( 'Generated taxonomy PHP code', 'pmorix-post-type-taxonomy-rest-generator' ); ?>"><?php echo esc_textarea( $generated_code ); ?></textarea>
 		<p>
-			<button type="button" class="button" id="pmorix-post-type-taxonomy-rest-generator-copy-taxonomy-code" data-pmorix-post-type-taxonomy-rest-generator-copy data-target="pmorix-post-type-taxonomy-rest-generator-generated-taxonomy-code" data-status="pmorix-post-type-taxonomy-rest-generator-copy-taxonomy-status"><?php echo esc_html__( 'Copy to clipboard', 'pmorix-post-type-taxonomy-rest-generator' ); ?></button>
+			<button type="button" class="button" id="pmorix-post-type-taxonomy-rest-generator-copy-taxonomy-code" data-pmorix-ptrg-copy data-target="pmorix-post-type-taxonomy-rest-generator-generated-taxonomy-code" data-status="pmorix-post-type-taxonomy-rest-generator-copy-taxonomy-status"><?php echo esc_html__( 'Copy to clipboard', 'pmorix-post-type-taxonomy-rest-generator' ); ?></button>
 			<span id="pmorix-post-type-taxonomy-rest-generator-copy-taxonomy-status" role="status" aria-live="polite"></span>
 		</p>
 		<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
-			<?php wp_nonce_field( 'wp_architect_ai_download_taxonomy' ); ?>
-			<input type="hidden" name="action" value="wp_architect_ai_download_taxonomy">
-			<?php foreach ( get_object_vars( $configuration ) as $architect_ai_code_generator_field => $architect_ai_code_generator_value ) : ?>
-				<?php if ( is_array( $architect_ai_code_generator_value ) ) : ?>
-					<?php foreach ( $architect_ai_code_generator_value as $architect_ai_code_generator_item ) : ?>
-						<input type="hidden" name="<?php echo esc_attr( $architect_ai_code_generator_field ); ?>[]" value="<?php echo esc_attr( $architect_ai_code_generator_item ); ?>">
+			<?php wp_nonce_field( 'pmorix_ptrg_download_taxonomy', 'pmorix_ptrg_taxonomy_nonce' ); ?>
+			<input type="hidden" name="action" value="pmorix_ptrg_download_taxonomy">
+			<?php foreach ( get_object_vars( $configuration ) as $pmorix_ptrg_field => $pmorix_ptrg_value ) : ?>
+				<?php if ( is_array( $pmorix_ptrg_value ) ) : ?>
+					<?php foreach ( $pmorix_ptrg_value as $pmorix_ptrg_item ) : ?>
+						<input type="hidden" name="<?php echo esc_attr( $pmorix_ptrg_field ); ?>[]" value="<?php echo esc_attr( $pmorix_ptrg_item ); ?>">
 					<?php endforeach; ?>
-				<?php elseif ( is_bool( $architect_ai_code_generator_value ) ) : ?>
-					<input type="hidden" name="<?php echo esc_attr( $architect_ai_code_generator_field ); ?>" value="<?php echo $architect_ai_code_generator_value ? '1' : '0'; ?>">
+				<?php elseif ( is_bool( $pmorix_ptrg_value ) ) : ?>
+					<input type="hidden" name="<?php echo esc_attr( $pmorix_ptrg_field ); ?>" value="<?php echo $pmorix_ptrg_value ? '1' : '0'; ?>">
 				<?php else : ?>
-					<input type="hidden" name="<?php echo esc_attr( $architect_ai_code_generator_field ); ?>" value="<?php echo esc_attr( $architect_ai_code_generator_value ); ?>">
+					<input type="hidden" name="<?php echo esc_attr( $pmorix_ptrg_field ); ?>" value="<?php echo esc_attr( $pmorix_ptrg_value ); ?>">
 				<?php endif; ?>
 			<?php endforeach; ?>
 			<?php submit_button( __( 'Download PHP file', 'pmorix-post-type-taxonomy-rest-generator' ), 'secondary', 'submit', false ); ?>

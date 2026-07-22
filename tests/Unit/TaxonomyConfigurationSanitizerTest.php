@@ -2,13 +2,13 @@
 /**
  * Taxonomy configuration sanitizer tests.
  *
- * @package PratapMaity\WPArchitectAI
+ * @package PratapMaity\PMorixPTRG
  */
 
-namespace PratapMaity\WPArchitectAI\Tests\Unit;
+namespace PratapMaity\PMorixPTRG\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use PratapMaity\WPArchitectAI\Taxonomy\ConfigurationSanitizer;
+use PratapMaity\PMorixPTRG\Taxonomy\ConfigurationSanitizer;
 
 /**
  * Tests taxonomy request sanitization.
